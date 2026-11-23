@@ -1,20 +1,22 @@
-# Aman — Data & AI Systems | 0-to-1 Platforms
+# Aman (AT) — Data & AI Systems | 0-to-1 Platforms
 
-> Aman builds enterprise Data & AI platforms and 0-to-1 systems at HCLTech. Recognized MIT Solve Fellow. Specializes in scalable system architecture, automated data pipelines, human-centered decision loops, and developer experience.
+> Aman builds enterprise Data & AI platforms and 0-to-1 software systems at HCLTech. Recognized MIT Solve Fellow. Specializes in scalable system architecture, automated data pipelines, human-centered decision loops, and developer experience.
+
+## Digital Identity
+- Domain: https://aman.atii.in/
+- Email: iat.connectme@outlook.in
+- GitHub: https://github.com/Aman-system-design
+- Logo / Monogram: AT
 
 ## Focus Areas
 - Enterprise AI & Data Platform Architecture
-- 0-to-1 Systems Engineering & GTM Strategy
-- Developer Tooling & Pipeline Automation
+- 0-to-1 Systems Engineering & GTM Velocity
 - Human-in-the-Loop Explainability & Rollback Gates
 - Chaos Engineering & System Resilience
+- Latency, Cost, and Consistency Trade-Off Modeling
 
 ## Current Affiliation
 - Data & AI Solutions, HCLTech (2023 – Present)
 
 ## Fellowships & Honors
 - MIT Solve Initiative Fellow (2022 – 2023)
-
-## Digital Links
-- GitHub: https://github.com/Aman-system-design
-- Portfolio & System Simulator: https://aman-system-design.github.io/Aman-System-Design/

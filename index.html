@@ -6,11 +6,12 @@
   <meta name="theme-color" content="#fafbf8">
   <title>Aman — Data &amp; AI Systems | 0-to-1 Platforms</title>
   <meta name="description" content="Aman builds 0-to-1 platform infrastructure and enterprise data & AI systems at HCLTech. MIT Solve Fellow.">
+  <link rel="canonical" href="https://aman.atii.in/">
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23141513'/><path d='M30 70L50 28L70 70H58L50 52L42 70H30Z' fill='%232563EB'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23141513'/><text x='50' y='68' font-family='sans-serif' font-size='50' font-weight='900' fill='%232563EB' text-anchor='middle'>AT</text></svg>">
 
-  <!-- Discovery -->
+  <!-- AI Discovery Guide -->
   <link rel="help" type="text/plain" href="llms.txt" title="AI reading guide">
   <link rel="help" type="text/markdown" href="AGENTS.md" title="Agent instructions">
 
@@ -23,7 +24,7 @@
     <!-- Top Bar -->
     <header class="top-nav">
       <div class="brand-line">
-        <span class="brand-mark">as<span>.</span></span>
+        <span class="brand-mark" id="brand-logo">AT<span>.</span></span>
         <span class="brand-desc">Data &amp; AI Systems • 0-to-1 Platforms</span>
       </div>
       <div class="nav-actions">
@@ -31,42 +32,34 @@
       </div>
     </header>
 
-    <!-- Bento One-Eye-View Grid -->
+    <!-- Bento Single-Eye-View Cockpit -->
     <main class="bento-grid">
 
-      <!-- LEFT COLUMN: Intro, Metrics & Projects -->
+      <!-- LEFT COLUMN: Identity & Core Scale -->
       <div class="bento-col col-left">
         <!-- Personal Intro Card -->
-        <section class="bento-card card-intro" aria-labelledby="intro-heading">
+        <section class="bento-card card-intro" aria-labelledby="intro-headline">
           <div id="intro-container">
             <!-- Rendered by app.js -->
           </div>
         </section>
 
-        <!-- Telemetry Metrics Card -->
-        <section class="bento-card card-metrics" aria-label="System Metrics">
+        <!-- Verified Telemetry Metrics Card -->
+        <section class="bento-card card-metrics" aria-label="Verified Scale">
           <div class="card-section-title">Verified System Scale</div>
           <div id="metrics-container" class="metrics-row">
             <!-- Rendered by app.js -->
           </div>
         </section>
-
-        <!-- 0-to-1 Projects Card -->
-        <section class="bento-card card-projects" aria-label="0-to-1 Systems">
-          <div class="card-section-title">Active 0-to-1 Systems</div>
-          <div id="projects-container" class="projects-stack">
-            <!-- Rendered by app.js -->
-          </div>
-        </section>
       </div>
 
-      <!-- CENTER COLUMN: Interactive System & Decision Simulator -->
+      <!-- CENTER COLUMN: Interactive System Trade-Off Simulator -->
       <div class="bento-col col-center">
         <section class="bento-card card-simulator" aria-labelledby="sim-title">
           <div class="sim-top-bar">
             <div class="sim-headline">
               <h3 id="sim-title">System Trade-Off Simulator</h3>
-              <p>Test decision trade-offs against live team &amp; infrastructure telemetry.</p>
+              <p>Test architectural trade-offs against live team &amp; infrastructure telemetry.</p>
             </div>
             <div class="mode-switcher" role="tablist">
               <button id="tab-btn-sim" class="tab-btn active" role="tab" type="button">Tactical Dilemma</button>
@@ -125,11 +118,11 @@
             </div>
           </div>
 
-          <!-- Mode 2: Architecture Sandbox View -->
+          <!-- Mode 2: Live Architecture Sandbox View -->
           <div id="sandbox-stage-view" class="sandbox-card" style="display: none;">
             <div class="sandbox-control-group">
               <label for="scale-slider">
-                <span>Ingestion Scale</span>
+                <span>Ingestion Workload</span>
                 <span id="val-scale-display" style="color:#60a5fa; font-family:var(--font-mono);">250K req/sec</span>
               </label>
               <input type="range" id="scale-slider" class="scale-slider" min="10" max="2000" value="250" step="10">
@@ -175,7 +168,7 @@
         </section>
 
         <!-- Case Studies Card -->
-        <section class="bento-card card-casestudies" aria-label="Case Studies">
+        <section class="bento-card card-casestudies" aria-label="Selected Case Studies">
           <div class="card-section-title">Selected Case Studies</div>
           <div id="casestudies-container" class="case-stack">
             <!-- Rendered by app.js -->
@@ -187,8 +180,9 @@
 
     <!-- Cockpit Footer -->
     <footer class="cockpit-footer">
-      <div>Aman — Data &amp; AI Systems • HCLTech • MIT Solve</div>
+      <div>Aman — aman.atii.in • Data &amp; AI Systems</div>
       <nav class="footer-nav">
+        <a href="mailto:iat.connectme@outlook.in">iat.connectme@outlook.in</a>
         <a href="https://github.com/Aman-system-design" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="llms.txt" target="_blank">llms.txt</a>
       </nav>
