@@ -4,21 +4,960 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fafbf9">
-  <title>Aman | Product at HCLTech, 0-to-1 Systems &amp; Writing</title>
-  <meta name="description" content="Aman is a technical product manager leading Data & AI platforms at HCLTech, building 0-to-1 systems, and writing field notes. MIT Solve Fellow.">
+  <title>Aman | Data &amp; AI Platforms, 0-to-1 Systems &amp; Architecture</title>
+  <meta name="description" content="Aman leads Data & AI platforms at HCLTech, building 0-to-1 systems and writing architecture field notes. MIT Solve Fellow.">
   <link rel="canonical" href="https://aman.atii.in/">
 
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23171816'/><text x='50' y='68' font-family='sans-serif' font-size='50' font-weight='900' fill='%2310B981' text-anchor='middle'>AT</text></svg>">
+  <!-- Favicon with AT and green dot -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23171816'/><text x='44' y='68' font-family='sans-serif' font-size='48' font-weight='900' fill='%23FFFFFF'>AT</text><circle cx='80' cy='65' r='7' fill='%2310B981'/></svg>">
 
-  <!-- Discovery & AI Agent Guide -->
+  <!-- AI Discovery Guide -->
   <link rel="help" type="text/plain" href="llms.txt" title="AI reading guide">
   <link rel="help" type="text/markdown" href="AGENTS.md" title="Agent instructions">
 
-  <!-- External Stylesheet + Backup Inline -->
+  <!-- Core Embedded CSS to guarantee instant paint and prevent unstyled loads -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --bg-page: #fafbf9;
+      --bg-card: #ffffff;
+      --border-subtle: #e5e8e2;
+      --border-hover: #cbd5e1;
+      --text-main: #171816;
+      --text-muted: #575b53;
+      --text-subtle: #8a8e84;
+
+      --node-blue: #2563eb;
+      --node-blue-tint: #eff6ff;
+      --node-blue-border: #bfdbfe;
+
+      --node-yellow: #f59e0b;
+      --node-yellow-tint: #fffbeb;
+      --node-yellow-border: #fde68a;
+
+      --node-green: #10b981;
+      --node-green-tint: #ecfdf5;
+      --node-green-border: #a7f3d0;
+
+      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+      --shadow-md: 0 4px 14px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.02);
+      --shadow-lg: 0 12px 30px rgba(0,0,0,0.08);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* Top Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 251, 249, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.9rem 0;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .wordmark {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .wordmark span {
+      color: var(--node-green) !important;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .site-nav a {
+      padding: 0.35rem 0.6rem;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+    }
+
+    .site-nav a:hover,
+    .site-nav a.active {
+      color: var(--text-main);
+      background: #f1f3ed;
+    }
+
+    .header-socials {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .social-pill, .social-brick {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      border: 1px solid var(--border-subtle);
+      background: #fff;
+      color: var(--text-muted);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .social-pill:hover, .social-brick:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-hover);
+      color: var(--text-main);
+    }
+
+    .linkedin-pill:hover, .linkedin-brick:hover { background: #0077b5; color: #fff; border-color: #0077b5; }
+    .x-pill:hover, .x-brick:hover { background: #000; color: #fff; border-color: #000; }
+    .github-pill:hover, .github-brick:hover { background: #24292e; color: #fff; border-color: #24292e; }
+
+    /* Hero Section */
+    .hero {
+      padding: 4.5rem 0 2.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .intro-heading h1 {
+      font-size: 3.4rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.6rem;
+    }
+
+    .intro-heading h1 span {
+      color: var(--node-blue);
+    }
+
+    .intro-role {
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .intro-bio {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 530px;
+      margin-bottom: 1.3rem;
+    }
+
+    .intro-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      background: var(--node-green-tint);
+      border: 1px solid var(--node-green-border);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #065f46;
+      margin-bottom: 1.6rem;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--node-green);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.9); }
+    }
+
+    .intro-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      background: var(--text-main);
+      color: #ffffff;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(23, 24, 22, 0.15);
+    }
+
+    .contact-link:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+
+    .playground-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.3rem;
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .playground-link:hover {
+      border-color: var(--border-hover);
+      background: #f7f9f5;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Avatar Card */
+    .hero-art-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.2rem 1.5rem;
+      background: linear-gradient(145deg, #ffffff, #f4f6f1);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-avatar-svg {
+      width: 190px;
+      height: 190px;
+      filter: drop-shadow(0 10px 16px rgba(0,0,0,0.08));
+      animation: floatAvatar 4s ease-in-out infinite;
+    }
+
+    @keyframes floatAvatar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    .hero-art-caption {
+      font-size: 0.85rem;
+      color: var(--text-subtle);
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    /* Interactive Color Key Bar */
+    .brick-key-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      padding: 0.85rem 1.4rem;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0 3.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .key-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-subtle);
+      margin-right: 0.4rem;
+    }
+
+    .key-filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: #f8faf6;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s ease;
+    }
+
+    .key-filter-btn:hover {
+      background: #edf1e8;
+      color: var(--text-main);
+    }
+
+    .key-filter-btn.active {
+      background: var(--text-main);
+      color: #fff;
+      border-color: var(--text-main);
+    }
+
+    .key-node, .key-brick {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      position: relative;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      vertical-align: middle;
+    }
+
+    .key-blue { background: var(--node-blue); }
+    .key-yellow { background: var(--node-yellow); }
+    .key-green { background: var(--node-green); }
+
+    .key-filter-reset {
+      margin-left: auto;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #ef4444;
+      padding: 0.35rem 0.7rem;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 999px;
+    }
+
+    /* 2-Column Section Layout */
+    .section-row {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2.5rem;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .section-label {
+      position: sticky;
+      top: 5rem;
+      align-self: start;
+    }
+
+    .section-label h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .model-caption {
+      font-size: 0.88rem;
+      color: var(--text-subtle);
+      line-height: 1.5;
+    }
+
+    .section-content {
+      min-width: 0;
+    }
+
+    /* Cards */
+    .card-stem, .card-brick {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.8rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease, filter 0.3s ease;
+      position: relative;
+    }
+
+    .card-stem:hover, .card-brick:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-hover);
+    }
+
+    .card-stem.dimmed, .card-brick.dimmed {
+      opacity: 0.25;
+      filter: grayscale(0.8);
+      pointer-events: none;
+    }
+
+    .card-stem.highlighted, .card-brick.highlighted {
+      border-width: 2px;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .card-stem.block-blue.highlighted, .card-brick.block-blue.highlighted { border-color: var(--node-blue); }
+    .card-stem.block-yellow.highlighted, .card-brick.block-yellow.highlighted { border-color: var(--node-yellow); }
+    .card-stem.block-green.highlighted, .card-brick.block-green.highlighted { border-color: var(--node-green); }
+
+    /* Work Card Details */
+    .current-role {
+      margin-bottom: 2rem;
+      background: #ffffff;
+      border-left: 5px solid var(--node-blue);
+    }
+
+    .item-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .company-brand h3 {
+      font-size: 1.22rem;
+      font-weight: 800;
+    }
+
+    .company-brand h3 a {
+      color: var(--text-main);
+    }
+
+    .company-brand h3 a:hover {
+      color: var(--node-blue);
+    }
+
+    .role-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .current-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .role-summary {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .metrics-banner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding: 1rem;
+      background: #f8faf6;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 1.4rem;
+    }
+
+    .metric-value {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--node-blue);
+      line-height: 1.1;
+      font-family: var(--font-mono);
+    }
+
+    .metric-label {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-subtle);
+      margin-top: 0.2rem;
+    }
+
+    .metric-detail {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .highlights-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-subtle);
+      margin-bottom: 0.6rem;
+    }
+
+    .role-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .role-bullets li {
+      position: relative;
+      padding-left: 1.2rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .role-bullets li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--node-blue);
+      font-weight: bold;
+    }
+
+    .previous-roles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .timeline-item {
+      padding: 1.3rem;
+    }
+
+    .timeline-item h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .timeline-role {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-period {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-subtle);
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Grids */
+    .edu-grid, .projects-grid, .taste-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .field-notes-list, .essays-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .field-note-card {
+      padding: 1.6rem;
+    }
+
+    .note-badge {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      background: var(--node-green-tint);
+      border: 1px solid var(--node-green-border);
+      color: #065f46;
+      border-radius: 999px;
+      margin-bottom: 0.6rem;
+    }
+
+    .note-date {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-subtle);
+      margin-left: 0.6rem;
+    }
+
+    .field-note-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .field-note-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .note-link, .project-cta {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--node-blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .note-link:hover, .project-cta:hover {
+      text-decoration: underline;
+    }
+
+    .essay-card {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .essay-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .essay-category {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--node-blue);
+    }
+
+    .essay-meta {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-subtle);
+    }
+
+    .essay-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .essay-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-tag {
+      font-size: 0.74rem;
+      padding: 0.2rem 0.5rem;
+      background: #f1f3ed;
+      border-radius: 6px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* 3D Playground Section */
+    .playground-section {
+      background: #ffffff;
+      padding: 3rem 2rem;
+      border-radius: var(--radius-lg);
+      margin: 2rem 0;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .build-gallery-heading {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--text-subtle);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .build-gallery {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.6rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .build-choice {
+      padding: 0.6rem 0.4rem;
+      background: #f8faf6;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .build-choice:hover {
+      background: #edf1e8;
+      color: var(--text-main);
+    }
+
+    .build-choice.active {
+      background: var(--text-main);
+      color: #fff;
+      border-color: var(--text-main);
+    }
+
+    .build-stage-heading {
+      margin-bottom: 1rem;
+    }
+
+    .build-stage-heading h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.2rem;
+    }
+
+    .playground-instructions {
+      font-size: 0.86rem;
+      color: var(--text-subtle);
+    }
+
+    .brick-playground {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: radial-gradient(circle at center, #ffffff 0%, #f4f6f1 100%);
+      position: relative;
+    }
+
+    #scene {
+      width: 100%;
+      height: 380px;
+      cursor: grab;
+    }
+
+    #scene:active {
+      cursor: grabbing;
+    }
+
+    .scene-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1.2rem;
+      background: #ffffff;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .drag-hint {
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      color: var(--text-subtle);
+    }
+
+    .playground-controls {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .scene-btn {
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: #f1f3ed;
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s ease;
+    }
+
+    .scene-btn:hover {
+      background: #e2e8dc;
+    }
+
+    /* Social Posts */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .post-card {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .post-platform {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--node-blue);
+      margin-bottom: 0.6rem;
+    }
+
+    .post-quote {
+      font-size: 0.94rem;
+      color: var(--text-main);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 3.5rem 0 4.5rem;
+      background: #ffffff;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .footer-wordmark {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .footer-wordmark span {
+      color: var(--node-green) !important;
+    }
+
+    .footer-tagline {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin: 0.4rem 0 0.2rem;
+      font-weight: 600;
+    }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--text-subtle);
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+    }
+
+    .footer-link:hover {
+      color: var(--node-blue);
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .section-row { grid-template-columns: 1fr; gap: 1.5rem; }
+      .section-label { position: static; }
+      .previous-roles, .edu-grid, .projects-grid, .taste-grid, .posts-grid { grid-template-columns: 1fr; }
+      .build-gallery { grid-template-columns: repeat(3, 1fr); }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-right { align-items: flex-start; }
+      .intro-heading h1 { font-size: 2.6rem; }
+      .site-nav { display: none; }
+    }
+  </style>
+
+  <!-- External Stylesheet (Cascades with fallback) -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Three.js for Interactive 3D Brick Builds -->
+  <!-- Three.js for Interactive 3D Primitives Playground -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body id="top">
@@ -38,7 +977,11 @@
         <a href="#elsewhere">Posts</a>
       </nav>
       <div class="header-socials" id="header-socials">
-        <!-- Rendered by app.js -->
+        <a class="social-pill linkedin-pill" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">in</a>
+        <a class="social-pill x-pill" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" title="X / Twitter">𝕏</a>
+        <a class="social-pill github-pill" href="https://github.com/Aman-system-design" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
       </div>
     </div>
   </header>
@@ -48,57 +991,105 @@
     <section class="hero wrap" aria-labelledby="intro-title">
       <div class="hero-grid">
         <div id="hero-intro" class="intro-col">
-          <!-- Rendered by app.js -->
+          <div class="intro-heading">
+            <h1 id="intro-title">Hi, I’m <span>Aman.</span></h1>
+            <p class="intro-role">Data &amp; AI Platforms • 0-to-1 Systems Architecture</p>
+            <p class="intro-bio">Building data &amp; AI platforms and 0-to-1 software systems. Focused on closing the gap between complex machine intelligence and intuitive, high-impact enterprise user workflows.</p>
+          </div>
+          <div class="intro-status-pill">
+            <span class="status-dot"></span>
+            <span>Data &amp; AI @ HCLTech • MIT Solve Fellow</span>
+          </div>
+          <div class="intro-actions">
+            <a class="contact-link" href="mailto:iat.connectme@outlook.in" data-copy-email="iat.connectme@outlook.in">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Get in touch
+            </a>
+            <a class="playground-link" href="#playground">
+              Explore 3D primitives <span aria-hidden="true">↘</span>
+            </a>
+          </div>
         </div>
 
         <div class="hero-art-box">
-          <svg class="hero-avatar-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Tactile Brick Mascot with Coffee">
-            <!-- Studio Shadow -->
-            <ellipse cx="100" cy="180" rx="65" ry="12" fill="#000000" fill-opacity="0.08"/>
+          <svg class="hero-avatar-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Aman Digital Workstation Avatar">
+            <!-- Studio Base Shadow -->
+            <ellipse cx="100" cy="180" rx="72" ry="10" fill="#000000" fill-opacity="0.06"/>
+
+            <!-- Ambient Floating Geometric Primitives (No Bricks!) -->
+            <!-- Cyan Frosted Octahedron Node (Top Left) -->
+            <polygon points="36,46 45,34 54,46 45,58" fill="#38BDF8" fill-opacity="0.85"/>
+            <polygon points="36,46 45,34 45,58" fill="#0284C7" fill-opacity="0.5"/>
             
-            <!-- Brick Base / Overalls (Blue) -->
-            <rect x="58" y="100" width="84" height="65" rx="10" fill="#2563EB"/>
-            <rect x="58" y="145" width="84" height="20" rx="6" fill="#1D4ED8"/>
-            <!-- Stud buttons on strap -->
-            <circle cx="74" cy="112" r="5" fill="#F8FAFC"/>
-            <circle cx="126" cy="112" r="5" fill="#F8FAFC"/>
-            <!-- Pocket -->
-            <path d="M86 130H114V146C114 149.314 111.314 152 108 152H92C88.6863 152 86 149.314 86 146V130Z" fill="#1E40AF"/>
+            <!-- Emerald Glowing Ring Node (Top Right) -->
+            <circle cx="164" cy="48" r="8" fill="#10B981" fill-opacity="0.9"/>
+            <circle cx="164" cy="48" r="13" stroke="#10B981" stroke-width="1.5" stroke-dasharray="2 3" fill="none" opacity="0.6"/>
 
-            <!-- Yellow Brick Head -->
-            <rect x="68" y="44" width="64" height="52" rx="10" fill="#FBBF24"/>
-            <!-- Top Studs -->
-            <rect x="80" y="36" width="18" height="9" rx="3" fill="#F59E0B"/>
-            <rect x="102" y="36" width="18" height="9" rx="3" fill="#F59E0B"/>
-            
-            <!-- Friendly Face -->
-            <circle cx="85" cy="65" r="4.5" fill="#1F2937"/>
-            <circle cx="115" cy="65" r="4.5" fill="#1F2937"/>
-            <circle cx="86.5" cy="63.5" r="1.5" fill="#FFFFFF"/>
-            <circle cx="116.5" cy="63.5" r="1.5" fill="#FFFFFF"/>
-            <path d="M92 75C96 79 104 79 108 75" stroke="#1F2937" stroke-width="3" stroke-linecap="round"/>
-            <circle cx="77" cy="72" r="4" fill="#F87171" fill-opacity="0.5"/>
-            <circle cx="123" cy="72" r="4" fill="#F87171" fill-opacity="0.5"/>
+            <!-- Warm Amber Prism Node (Lower Left) -->
+            <rect x="28" y="96" width="12" height="12" rx="3" transform="rotate(45 34 102)" fill="#F59E0B" fill-opacity="0.85"/>
 
-            <!-- Hair -->
-            <path d="M64 52C64 36 78 30 100 30C122 30 136 36 136 52C136 64 135 68 132 72C131 60 128 44 116 42C104 40 96 42 84 42C72 44 69 60 68 72C65 68 64 64 64 52Z" fill="#18181B"/>
+            <!-- Sleek Minimalist Desk -->
+            <rect x="24" y="142" width="152" height="12" rx="6" fill="#E2E8F0"/>
+            <rect x="36" y="154" width="6" height="24" rx="3" fill="#CBD5E1"/>
+            <rect x="158" y="154" width="6" height="24" rx="3" fill="#CBD5E1"/>
 
-            <!-- Waving Hand -->
-            <rect x="142" y="105" width="22" height="12" rx="6" transform="rotate(-30 142 105)" fill="#FBBF24"/>
-            <!-- Coffee Cup -->
-            <rect x="36" y="112" width="16" height="20" rx="3" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
-            <rect x="34" y="109" width="20" height="4" rx="2" fill="#EF4444"/>
-            <path d="M42 102C42 98 46 98 46 94" stroke="#CBD5E1" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Aman - Minimalist Body / Navy Crewneck -->
+            <path d="M66 142 L66 112 C66 98 78 90 100 90 C122 90 134 98 134 112 L134 142 Z" fill="#1E293B"/>
+            <path d="M88 90 C88 96 112 96 112 90" stroke="#334155" stroke-width="2.5" fill="none"/>
+
+            <!-- Neck & Head -->
+            <rect x="94" y="80" width="12" height="14" rx="3" fill="#FCD34D"/>
+            <rect x="76" y="42" width="48" height="46" rx="14" fill="#FDE68A"/>
+
+            <!-- Modern Textured Dark Hair -->
+            <path d="M72 52 C72 32 82 26 100 26 C118 26 128 32 128 52 C128 58 126 64 124 66 C120 48 114 36 100 36 C86 36 80 48 76 66 C74 64 72 58 72 52 Z" fill="#0F172A"/>
+
+            <!-- Friendly Face Features -->
+            <circle cx="88" cy="62" r="3.5" fill="#0F172A"/>
+            <circle cx="112" cy="62" r="3.5" fill="#0F172A"/>
+            <circle cx="89.5" cy="60.5" r="1.2" fill="#FFFFFF"/>
+            <circle cx="113.5" cy="60.5" r="1.2" fill="#FFFFFF"/>
+            <path d="M94 72 C97 76 103 76 106 72" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="82" cy="68" r="3" fill="#F43F5E" fill-opacity="0.3"/>
+            <circle cx="118" cy="68" r="3" fill="#F43F5E" fill-opacity="0.3"/>
+
+            <!-- Laptop Open on Desk -->
+            <rect x="78" y="120" width="44" height="26" rx="4" fill="#94A3B8"/>
+            <rect x="81" y="123" width="38" height="20" rx="2" fill="#0F172A"/>
+            <!-- Data Stream / Code lines on display -->
+            <rect x="86" y="127" width="16" height="2" rx="1" fill="#10B981"/>
+            <rect x="86" y="131" width="24" height="2" rx="1" fill="#38BDF8"/>
+            <rect x="86" y="135" width="12" height="2" rx="1" fill="#F59E0B"/>
+            <rect x="86" y="139" width="18" height="2" rx="1" fill="#A855F7"/>
+            <path d="M72 144 L128 144 L124 142 L76 142 Z" fill="#64748B"/>
+
+            <!-- Minimalist Ceramic Coffee Cup -->
+            <rect x="142" y="128" width="14" height="16" rx="3" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+            <path d="M156 131 C159 131 160 134 160 136 C160 138 159 141 156 141" stroke="#CBD5E1" stroke-width="1.5" fill="none"/>
+            <path d="M147 123 C147 119 150 119 150 115" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
           </svg>
-          <p class="hero-art-caption">A little brick version of me.</p>
+          <p class="hero-art-caption">A little digital version of me.</p>
         </div>
       </div>
     </section>
 
-    <!-- Interactive Brick Color Key -->
+    <!-- Interactive Color Key -->
     <nav class="wrap">
-      <div id="brick-key-nav" class="brick-key-bar" aria-label="Interactive Color Palette Key">
-        <!-- Rendered by app.js -->
+      <div id="color-key-nav" class="brick-key-bar" aria-label="Interactive Color Palette Key">
+        <p class="key-label">Interactive Key:</p>
+        <button class="key-filter-btn" data-filter="building" data-target="work" type="button">
+          <i class="key-node key-blue" aria-hidden="true"></i>
+          <span>Blue for building</span>
+        </button>
+        <button class="key-filter-btn" data-filter="learning" data-target="education" type="button">
+          <i class="key-node key-yellow" aria-hidden="true"></i>
+          <span>Yellow for learning</span>
+        </button>
+        <button class="key-filter-btn" data-filter="sharing" data-target="field-notes" type="button">
+          <i class="key-node key-green" aria-hidden="true"></i>
+          <span>Green for sharing</span>
+        </button>
+        <button class="key-filter-reset" id="reset-filter-btn" type="button" style="display:none;">Clear filter ✕</button>
       </div>
     </nav>
 
@@ -171,15 +1162,15 @@
         </div>
       </section>
 
-      <!-- Interactive 3D Brick Playground Section -->
+      <!-- Interactive 3D Primitives Playground Section -->
       <section id="playground" class="section-row playground-section" aria-labelledby="playground-title">
         <div class="section-label">
-          <h2 id="playground-title">Play with bricks</h2>
-          <p class="model-caption">Six tactile builds. Drag to rotate in 3D space, assemble, and play.</p>
+          <h2 id="playground-title">Play with Primitives</h2>
+          <p class="model-caption">Six tactile assemblies. Drag to rotate in 3D space, disperse nodes, and reassemble.</p>
         </div>
         <div class="section-content">
           <div class="build-gallery-heading">
-            <span>Select a 3D build configuration:</span>
+            <span>Select a 3D architecture preset:</span>
             <span>Drag canvas to inspect 360°</span>
           </div>
 
@@ -188,34 +1179,34 @@
               <span>Classic Stack</span>
             </button>
             <button class="build-choice" type="button" data-design="orbit" aria-pressed="false">
-              <span>Orbit Ring</span>
+              <span>Orbital Ring</span>
             </button>
-            <button class="build-choice" type="button" data-design="heart" aria-pressed="false">
-              <span>Heart Shape</span>
+            <button class="build-choice" type="button" data-design="monolith" aria-pressed="false">
+              <span>Dual Monolith</span>
             </button>
-            <button class="build-choice" type="button" data-design="tower" aria-pressed="false">
-              <span>High Tower</span>
+            <button class="build-choice" type="button" data-design="cascade" aria-pressed="false">
+              <span>Cascade Matrix</span>
             </button>
-            <button class="build-choice" type="button" data-design="staircase" aria-pressed="false">
-              <span>Staircase</span>
+            <button class="build-choice" type="button" data-design="gateway" aria-pressed="false">
+              <span>Gateway Arch</span>
             </button>
-            <button class="build-choice" type="button" data-design="arch" aria-pressed="false">
-              <span>Arch Gateway</span>
+            <button class="build-choice" type="button" data-design="equilibrium" aria-pressed="false">
+              <span>Equilibrium</span>
             </button>
           </div>
 
           <div class="build-stage-heading">
             <h3 id="selected-build">Classic Stack</h3>
-            <p class="playground-instructions">Click &amp; drag mouse (or touch) to rotate. Hit scatter to explode into loose pieces.</p>
+            <p class="playground-instructions">Click &amp; drag mouse (or touch) to rotate 360°. Hit disperse to scatter into floating data nodes.</p>
           </div>
 
           <div class="brick-playground">
-            <div id="scene" role="img" aria-label="Interactive 3D building bricks canvas"></div>
+            <div id="scene" role="img" aria-label="Interactive 3D primitives canvas"></div>
             <div class="scene-caption">
               <span class="drag-hint">⇄ Drag to rotate in 3D</span>
               <div class="playground-controls">
                 <button id="sound-toggle" class="scene-btn" type="button" aria-pressed="true">Sound On 🔊</button>
-                <button id="stack-toggle" class="scene-btn" type="button">Scatter the bricks ↘</button>
+                <button id="stack-toggle" class="scene-btn" type="button">Disperse primitives ↘</button>
               </div>
             </div>
           </div>
@@ -238,7 +1229,18 @@
 
   <!-- Site Footer -->
   <footer id="site-footer" class="site-footer">
-    <!-- Rendered by app.js -->
+    <div class="wrap footer-inner">
+      <div class="footer-left">
+        <a class="footer-wordmark" href="#top">AT<span style="color:#10b981">.</span></a>
+        <p class="footer-tagline">Aman • Data &amp; AI Systems • 0-to-1 Platforms</p>
+        <p class="footer-copy">Crafted with precision. Designed for scale and human agency.</p>
+      </div>
+      <div class="footer-right">
+        <a class="footer-link" href="mailto:iat.connectme@outlook.in">iat.connectme@outlook.in</a>
+        <a class="footer-link" href="https://github.com/Aman-system-design" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="footer-link" href="llms.txt">llms.txt</a>
+      </div>
+    </div>
   </footer>
 
   <!-- Scripts -->

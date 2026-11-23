@@ -137,6 +137,7 @@ button {
   gap: 0.55rem;
 }
 
+.social-pill,
 .social-brick {
   display: inline-flex;
   align-items: center;
@@ -153,15 +154,16 @@ button {
   transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
+.social-pill:hover,
 .social-brick:hover {
   transform: translateY(-2px);
   border-color: var(--border-hover);
   color: var(--text-main);
 }
 
-.linkedin-brick:hover { background: #0077b5; color: #fff; border-color: #0077b5; }
-.x-brick:hover { background: #000; color: #fff; border-color: #000; }
-.github-brick:hover { background: #24292e; color: #fff; border-color: #24292e; }
+.linkedin-pill:hover, .linkedin-brick:hover { background: #0077b5; color: #fff; border-color: #0077b5; }
+.x-pill:hover, .x-brick:hover { background: #000; color: #fff; border-color: #000; }
+.github-pill:hover, .github-brick:hover { background: #24292e; color: #fff; border-color: #24292e; }
 
 /* Hero */
 .hero {
@@ -358,30 +360,21 @@ button {
   border-color: var(--text-main);
 }
 
+.key-node,
 .key-brick {
   display: inline-block;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 3px;
   position: relative;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  vertical-align: middle;
 }
-
-.key-brick::before, .key-brick::after {
-  content: "";
-  position: absolute;
-  top: 2px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.45);
-}
-.key-brick::before { left: 2px; }
-.key-brick::after { right: 2px; }
 
 .key-blue { background: var(--brick-blue); }
 .key-yellow { background: var(--brick-yellow); }
 .key-red { background: var(--brick-red); }
+.key-green { background: var(--accent-green); }
 
 .key-filter-reset {
   margin-left: auto;
@@ -428,6 +421,7 @@ button {
 }
 
 /* Cards */
+.card-stem,
 .card-brick {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -438,26 +432,30 @@ button {
   position: relative;
 }
 
+.card-stem:hover,
 .card-brick:hover {
   box-shadow: var(--shadow-md);
   border-color: var(--border-hover);
 }
 
+.card-stem.dimmed,
 .card-brick.dimmed {
   opacity: 0.25;
   filter: grayscale(0.8);
   pointer-events: none;
 }
 
+.card-stem.highlighted,
 .card-brick.highlighted {
   border-width: 2px;
   box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
 }
 
-.card-brick.block-blue.highlighted { border-color: var(--brick-blue); }
-.card-brick.block-yellow.highlighted { border-color: var(--brick-yellow); }
-.card-brick.block-red.highlighted { border-color: var(--brick-red); }
+.card-stem.block-blue.highlighted, .card-brick.block-blue.highlighted { border-color: var(--brick-blue); }
+.card-stem.block-yellow.highlighted, .card-brick.block-yellow.highlighted { border-color: var(--brick-yellow); }
+.card-stem.block-red.highlighted, .card-brick.block-red.highlighted { border-color: var(--brick-red); }
+.card-stem.block-green.highlighted, .card-brick.block-green.highlighted { border-color: var(--accent-green); }
 
 /* Work Card */
 .current-role {

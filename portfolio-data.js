@@ -1,14 +1,14 @@
-// Aman — Portfolio Data
-// Clean, decluttered, 100% value add
+// Aman (AT) — aman.atii.in
+// Clean, decluttered, 100% value add (System Primitives concept)
 
 window.PORTFOLIO_DATA = {
   profile: {
     name: "Aman",
     shortName: "Aman",
     initials: "AT",
-    role: "Product Manager — Data & AI Platform | 0-to-1 Products",
+    role: "Data & AI Platforms • 0-to-1 Systems Architecture",
     tagline: "Hi, I’m <span>Aman.</span>",
-    bio: "Product Manager building data & AI platforms and 0-to-1 software systems. Focused on closing the gap between complex machine intelligence and intuitive, high-impact enterprise user workflows.",
+    bio: "Building data & AI platforms and 0-to-1 software systems. Focused on closing the gap between complex machine intelligence and intuitive, high-impact enterprise user workflows.",
     email: "iat.connectme@outlook.in",
     location: "Bengaluru, India",
     statusBadge: "Data & AI @ HCLTech • MIT Solve Fellow",
@@ -23,7 +23,7 @@ window.PORTFOLIO_DATA = {
   colorKey: [
     { id: "building", color: "blue", label: "Blue for building", section: "work" },
     { id: "learning", color: "yellow", label: "Yellow for learning", section: "education" },
-    { id: "sharing", color: "red", label: "Red for sharing", section: "field-notes" }
+    { id: "sharing", color: "green", label: "Green for sharing", section: "field-notes" }
   ],
 
   work: {
@@ -31,10 +31,10 @@ window.PORTFOLIO_DATA = {
       company: "HCLTech",
       url: "https://www.hcltech.com/",
       badge: "Current",
-      role: "Product Manager — Data & AI Solutions",
+      role: "Data & AI Solutions Lead",
       period: "2023 – Present",
       location: "Bengaluru, India",
-      summary: "Leading 0-to-1 data platform and enterprise generative AI capability rollouts. Championing product strategy, cross-functional engineering execution, and customer telemetry.",
+      summary: "Leading 0-to-1 data platform and enterprise generative AI capability rollouts. Championing systems architecture, cross-functional engineering execution, and customer telemetry.",
       metrics: [
         { label: "Efficiency Gain", value: "3.5×", detail: "in automated data workflows" },
         { label: "AI Adoption", value: "85%+", detail: "user conversion on generative assistant" },
@@ -42,14 +42,14 @@ window.PORTFOLIO_DATA = {
       ],
       highlights: [
         "Architected enterprise AI platform strategy, turning workflow friction into high-adoption toolchains.",
-        "Partnered with data engineering to reduce p99 inference latency by 40% using tiered caching.",
-        "Established explainability & rollback gates that reduced false user hallucinations by 55%."
+        "Partnered with data engineering to reduce p99 inference latency by 40% via tiered speculative caching.",
+        "Established explainability & safety rollback gates that reduced automated write failures by 55%."
       ]
     },
     previous: [
       {
         company: "MIT Solve Initiative",
-        role: "Innovation Fellow & 0-to-1 Product Lead",
+        role: "Innovation Fellow & 0-to-1 Systems Lead",
         period: "2022 – 2023",
         description: "Selected for global challenge cohort to design and validate scalable technology products for high-impact social challenges.",
         bulletPoints: [
@@ -59,7 +59,7 @@ window.PORTFOLIO_DATA = {
       },
       {
         company: "Enterprise Analytics Systems",
-        role: "Associate Product Manager / Systems Engineer",
+        role: "Systems & Platform Engineer",
         period: "2021 – 2022",
         description: "Led analytics dashboard rebuild and self-serve querying interface for operational teams.",
         bulletPoints: [
@@ -96,12 +96,12 @@ window.PORTFOLIO_DATA = {
       cta: "View on GitHub ↗"
     },
     {
-      title: "0-to-1 PM Toolkit",
+      title: "0-to-1 Systems Toolkit",
       tag: "Open Source",
       badgeColor: "green",
       url: "https://github.com/Aman-system-design",
-      description: "Curated decision models, PRD scaffolds, and product metric telemetry templates designed specifically for technical PMs building in AI and distributed systems.",
-      tags: ["Product Strategy", "System Design", "PRD Templates"],
+      description: "Curated decision models, architecture scaffolds, and platform metric telemetry templates designed for high-scale AI and distributed systems.",
+      tags: ["System Design", "Decision Models", "Telemetry"],
       cta: "Explore Repository ↗"
     },
     {
@@ -140,11 +140,11 @@ window.PORTFOLIO_DATA = {
 
   essays: [
     {
-      title: "Product Managers don't need to write code, but must understand architecture",
-      category: "Product Philosophy",
+      title: "Modern system builders don't need to write every line of code, but must understand architecture",
+      category: "Systems Philosophy",
       date: "2026",
       readTime: "5 min read",
-      description: "Why technical intuition and system thinking are the ultimate superpowers for modern AI platform product leaders.",
+      description: "Why technical intuition and system thinking are the ultimate superpowers for building modern AI platforms.",
       url: "https://github.com/Aman-system-design"
     },
     {
@@ -156,7 +156,7 @@ window.PORTFOLIO_DATA = {
       url: "https://github.com/Aman-system-design"
     },
     {
-      title: "0 to 1 vs 1 to 100: Relearning product instincts",
+      title: "0 to 1 vs 1 to 100: Relearning system instincts",
       category: "Strategy",
       date: "2025",
       readTime: "4 min read",
@@ -183,7 +183,7 @@ window.PORTFOLIO_DATA = {
     {
       title: "The Mom Test",
       author: "Rob Fitzpatrick",
-      category: "Product Discovery",
+      category: "Discovery & User Loops",
       takeaway: "How to talk to customers and learn if your business is a good idea when everyone is lying to you.",
       rating: "★★★★★"
     },
@@ -210,8 +210,8 @@ window.PORTFOLIO_DATA = {
   socialPosts: [
     {
       platform: "LinkedIn",
-      eyebrow: "Product Insight",
-      quote: "The best product managers aren’t the ones with the most features on the roadmap. They’re the ones who ruthlessly protect engineering focus and eliminate ambiguity.",
+      eyebrow: "Systems Insight",
+      quote: "The best system leaders aren’t the ones with the most features on the roadmap. They’re the ones who ruthlessly protect engineering focus and eliminate ambiguity.",
       url: "https://github.com/Aman-system-design",
       date: "Recent"
     },
