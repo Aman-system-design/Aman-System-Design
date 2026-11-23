@@ -1,58 +1,44 @@
-# 🧱 Aman — Product Manager & Platform Leader
+# ⚡ Aman — Product Manager (Data & AI Platforms | 0-to-1 Systems)
 
 <div align="center">
   <h3>Data &amp; AI @ HCLTech • Building 0-to-1 Products • MIT Solve Fellow</h3>
-  <p>A tactile, high-craft Product Management portfolio inspired by <a href="https://itspsneha.com/">itspsneha.com</a>.</p>
+  <p>A high-craft, decluttered Product Management portfolio &amp; interactive PM Decision Simulator.</p>
+  <p>
+    <a href="https://aman-system-design.github.io/Aman-System-Design/"><strong>Explore Live Website &amp; Play Simulator »</strong></a>
+  </p>
 </div>
 
 ---
 
-## 🌟 Live Portfolio Website
+## 🎯 About This Concept
 
-> **Experience the live interactive website here:**  
-> 👉 **[Aman's PM Portfolio](https://aman-system-design.github.io/Aman-System-Design/)**
+Designed specifically for technical and platform product managers, this portfolio replaces generic tropes with **Product Primitives** and an interactive **PM Decision Simulator Game**.
 
-Featuring:
-- 🔵 **Work & Metrics**: Enterprise data platforms, GenAI copilot telemetry, 0-to-1 scaling.
-- 🟡 **Education & Accolades**: MIT Solve Fellow, Computer Science & Engineering.
-- 🔴 **Field Notes & Experiments**: Real-world operational teardowns, failure modes, user adoption studies.
-- 🧱 **Interactive 3D Brick Playground**: Real Three.js interactive 3D blocks with multiple presets (Classic Stack, Orbit Ring, Heart, Tower, Staircase, Arch), 360° drag rotation, explode/scatter mechanics, and synthesized tactile audio click feedback.
-- 🎨 **Interactive Color Key**: Filter the entire site on the fly by purpose (Building, Learning, Sharing).
-- 🛠️ **Live On-Site Customizer**: Edit any name, metric, or bio on the fly and export custom JSON with 1 click.
-
----
-
-## 📂 Repository Structure
-
-```text
-├── index.html              # Main semantic HTML5 portfolio layout
-├── style.css               # Tactile editorial design system (Manrope, brick palette)
-├── app.js                  # Dynamic DOM renderer, Three.js 3D engine & audio synthesizer
-├── portfolio-data.js       # Central data config (easy to customize)
-├── llms.txt                # AI agent discovery guide (ChatGPT, Claude, Perplexity)
-├── AGENTS.md               # Agentic guidance
-└── .github/workflows/      # Automated GitHub Pages CI/CD deployment
-```
+### Key Highlights:
+- 🎮 **The PM Decision Simulator Game**: A live tactical decision console with real-time team telemetry meters (*Product Velocity, User Delight, System Stability, Runway*). Play through production AI latency crises, enterprise roadmap derailments, and 0-to-1 onboarding drop-offs with instant PM post-mortem analysis.
+- 📊 **Interactive Prioritization Matrix (2x2)**: An interactive Impact vs. Effort quadrant mapping roadmap decisions (Quick Wins, Major Bets, Fill-Ins, Money Pits) with underlying PM rationale.
+- 🧠 **PM Mental Models Flashcards**: Interactive cards breaking down core principles (Gall’s Law, Second-Order Thinking, Conway’s Law, Good PM / Bad PM) with practical execution takeaways.
+- ⬡ **Product Primitives Filter**: Filter the entire portfolio on the fly across Systems Architecture, 0-to-1 Craft, Field Telemetry, and Mental Models.
+- 📐 **Enterprise Work & Case Studies**: Quantifiable impact at HCLTech (3.5× pipeline acceleration, 85%+ copilot adoption), MIT Solve Fellow journey, and technical field studies.
+- 🔊 **Tactile Web Audio Feedback**: Subtle synthesized mechanical audio clicks for all UI interactions.
 
 ---
 
-## 🚀 Local Development
+## 🌐 Live URL
+👉 **[https://aman-system-design.github.io/Aman-System-Design/](https://aman-system-design.github.io/Aman-System-Design/)**
 
-To run or preview locally, you can open `index.html` directly in any web browser, or run a quick local server:
+---
 
-```bash
-# Using Python
-python -m http.server 8000
+## 🛠️ Architecture & Tech Stack
 
-# Or using npx
-npx serve .
-```
-
-Then visit [http://localhost:8000](http://localhost:8000).
+- **Vanilla HTML5 & CSS3**: Pure, lightweight, zero build-step overhead, 60fps transitions.
+- **Web Audio API**: Synthesized tactile audio feedback with no external sound assets needed.
+- **portfolio-data.js**: Single source of truth for all career milestones, telemetry metrics, and simulator scenarios.
+- **GitHub Pages CI/CD**: Automatic deployment on push via GitHub Actions.
 
 ---
 
 ## 📬 Connect
 
 - **GitHub**: [@Aman-system-design](https://github.com/Aman-system-design)
-- **Repo**: [Aman-system-design/Aman-System-Design](https://github.com/Aman-system-design/Aman-System-Design)
+- **Repository**: [Aman-system-design/Aman-System-Design](https://github.com/Aman-system-design/Aman-System-Design)

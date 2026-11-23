@@ -3,235 +3,179 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fafbf9">
-  <title>Product Manager Portfolio | Sneha Prabhu Style</title>
-  <meta name="description" content="A tactile, high-craft Product Manager portfolio inspired by itspsneha.com — featuring metric-driven work, viral field experiments, and interactive brick builds.">
+  <meta name="theme-color" content="#fbfbf9">
+  <title>Aman — Product Manager | Data &amp; AI Systems</title>
+  <meta name="description" content="Technical Product Manager leading enterprise AI platforms at HCLTech, scaling 0-to-1 systems, and researching human-machine decision loops. MIT Solve Fellow.">
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='25' width='80' height='55' rx='10' fill='%232563eb'/><circle cx='35' cy='20' r='10' fill='%232563eb'/><circle cx='65' cy='20' r='10' fill='%232563eb'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23141514'/><path d='M30 70L50 28L70 70H58L50 52L42 70H30Z' fill='%232563EB'/></svg>">
 
-  <!-- Discovery & AI Agent Guide -->
+  <!-- AI Discovery Guide -->
   <link rel="help" type="text/plain" href="llms.txt" title="AI reading guide">
   <link rel="help" type="text/markdown" href="AGENTS.md" title="Agent instructions">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Three.js for Interactive 3D Brick Builds -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body id="top">
 
-  <!-- Top Sticky Navigation Bar -->
+  <!-- Sticky Header -->
   <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="wordmark" href="#top" id="wordmark" aria-label="Back to top">sp<span>.</span></a>
-      <nav class="site-nav" aria-label="Main Navigation">
+    <div class="wrap header-row">
+      <a class="brand-wordmark" href="#top" id="brand-wordmark" aria-label="Aman - Back to top">as<span>.</span></a>
+      <nav class="nav-links" aria-label="Site Navigation">
         <a href="#work">Work</a>
-        <a href="#education">Education</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#pm-game">PM Simulator 🎮</a>
+        <a href="#matrix">Prioritization</a>
+        <a href="#mental-models">Mental Models</a>
         <a href="#projects">Projects</a>
-        <a href="#field-notes">Field Notes</a>
-        <a href="#writing">Writing</a>
-        <a href="#taste">Off the clock</a>
-        <a href="#playground">Play</a>
-        <a href="#elsewhere">Posts</a>
       </nav>
-      <div class="header-socials" id="header-socials">
-        <!-- Rendered by app.js -->
+      <div class="header-actions">
+        <button id="sound-toggle-btn" class="sound-btn" type="button" aria-pressed="true">Sound: ON 🔊</button>
       </div>
     </div>
   </header>
 
   <main>
     <!-- Hero Section -->
-    <section class="hero wrap" aria-labelledby="intro-title">
-      <div class="hero-grid">
-        <div id="hero-intro" class="intro-col">
-          <!-- Rendered by app.js -->
-        </div>
-
-        <div class="hero-art-box">
-          <svg class="hero-avatar-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Tactile Brick Mascot with Coffee">
-            <!-- Studio Shadow -->
-            <ellipse cx="100" cy="180" rx="65" ry="12" fill="#000000" fill-opacity="0.08"/>
-            
-            <!-- Brick Base / Overalls (Blue) -->
-            <rect x="58" y="100" width="84" height="65" rx="10" fill="#2563EB"/>
-            <rect x="58" y="145" width="84" height="20" rx="6" fill="#1D4ED8"/>
-            <!-- Stud buttons on strap -->
-            <circle cx="74" cy="112" r="5" fill="#F8FAFC"/>
-            <circle cx="126" cy="112" r="5" fill="#F8FAFC"/>
-            <!-- Pocket -->
-            <path d="M86 130H114V146C114 149.314 111.314 152 108 152H92C88.6863 152 86 149.314 86 146V130Z" fill="#1E40AF"/>
-
-            <!-- Yellow Brick Head -->
-            <rect x="68" y="44" width="64" height="52" rx="10" fill="#FBBF24"/>
-            <!-- Top Studs -->
-            <rect x="80" y="36" width="18" height="9" rx="3" fill="#F59E0B"/>
-            <rect x="102" y="36" width="18" height="9" rx="3" fill="#F59E0B"/>
-            
-            <!-- Friendly Face -->
-            <!-- Eyes -->
-            <circle cx="85" cy="65" r="4.5" fill="#1F2937"/>
-            <circle cx="115" cy="65" r="4.5" fill="#1F2937"/>
-            <circle cx="86.5" cy="63.5" r="1.5" fill="#FFFFFF"/>
-            <circle cx="116.5" cy="63.5" r="1.5" fill="#FFFFFF"/>
-            <!-- Cute Smile -->
-            <path d="M92 75C96 79 104 79 108 75" stroke="#1F2937" stroke-width="3" stroke-linecap="round"/>
-            <!-- Cheeks -->
-            <circle cx="77" cy="72" r="4" fill="#F87171" fill-opacity="0.5"/>
-            <circle cx="123" cy="72" r="4" fill="#F87171" fill-opacity="0.5"/>
-
-            <!-- Modern Bob / Hair -->
-            <path d="M64 52C64 36 78 30 100 30C122 30 136 36 136 52C136 64 135 68 132 72C131 60 128 44 116 42C104 40 96 42 84 42C72 44 69 60 68 72C65 68 64 64 64 52Z" fill="#18181B"/>
-
-            <!-- Waving Hand -->
-            <rect x="142" y="105" width="22" height="12" rx="6" transform="rotate(-30 142 105)" fill="#FBBF24"/>
-            <!-- Coffee Cup in other hand -->
-            <rect x="36" y="112" width="16" height="20" rx="3" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
-            <rect x="34" y="109" width="20" height="4" rx="2" fill="#EF4444"/>
-            <!-- Coffee steam -->
-            <path d="M42 102C42 98 46 98 46 94" stroke="#CBD5E1" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <p class="hero-art-caption">A little brick version of me.</p>
-        </div>
+    <section class="hero-section wrap" aria-labelledby="hero-title">
+      <div id="hero-content">
+        <!-- Rendered by app.js -->
       </div>
     </section>
 
-    <!-- Interactive Brick Color Key -->
+    <!-- Primitives Navigation / Filter Bar -->
     <nav class="wrap">
-      <div id="brick-key-nav" class="brick-key-bar" aria-label="Interactive Color Palette Key">
+      <div id="primitives-nav">
         <!-- Rendered by app.js -->
       </div>
     </nav>
 
-    <!-- Main Content Container -->
-    <div class="wrap main-content">
+    <!-- Main Content Stream -->
+    <div class="wrap">
 
-      <!-- Work Section -->
+      <!-- Work & Experience -->
       <section id="work" class="section-row" aria-labelledby="work-title">
         <div class="section-label">
           <h2 id="work-title">Work</h2>
-          <p class="model-caption">Building AI platforms, developer primitives &amp; scalable systems.</p>
+          <p class="section-caption">Systems engineering, enterprise AI platform scale &amp; 0-to-1 delivery.</p>
         </div>
         <div id="work-content" class="section-content">
           <!-- Rendered by app.js -->
         </div>
       </section>
 
-      <!-- Education Section -->
-      <section id="education" class="section-row" aria-labelledby="education-title">
+      <!-- Case Studies & Field Telemetry -->
+      <section id="case-studies" class="section-row" aria-labelledby="cases-title">
         <div class="section-label">
-          <h2 id="education-title">Education</h2>
-          <p class="model-caption">Foundations in technology, engineering &amp; product leadership.</p>
+          <h2 id="cases-title">Case Studies</h2>
+          <p class="section-caption">Real-world operational teardowns, failure modes &amp; adoption breakthroughs.</p>
         </div>
-        <div id="education-content" class="section-content">
+        <div id="case-studies-content" class="section-content">
           <!-- Rendered by app.js -->
         </div>
       </section>
 
-      <!-- Active Projects Section -->
-      <section id="projects" class="section-row" aria-labelledby="projects-title">
+      <!-- The PM Decision Simulator Game -->
+      <section id="pm-game" class="section-row" aria-labelledby="game-title">
         <div class="section-label">
-          <h2 id="projects-title">Active Projects</h2>
-          <p class="model-caption">Building over coffee &amp; exploring AI-native interfaces.</p>
-        </div>
-        <div id="projects-content" class="section-content">
-          <!-- Rendered by app.js -->
-        </div>
-      </section>
-
-      <!-- Field Notes Section (Viral Real-World PM Experiments) -->
-      <section id="field-notes" class="section-row" aria-labelledby="field-notes-title">
-        <div class="section-label">
-          <h2 id="field-notes-title">Field Notes</h2>
-          <p class="model-caption">Hands-on product teardowns &amp; real-world operational experiments.</p>
-        </div>
-        <div id="field-notes-content" class="section-content">
-          <!-- Rendered by app.js -->
-        </div>
-      </section>
-
-      <!-- Writing & Essays Section -->
-      <section id="writing" class="section-row" aria-labelledby="writing-title">
-        <div class="section-label">
-          <h2 id="writing-title">Writing</h2>
-          <p class="model-caption">Sharing patterns, behavioral loops &amp; tech deep dives.</p>
-        </div>
-        <div id="essays-content" class="section-content">
-          <!-- Rendered by app.js -->
-        </div>
-      </section>
-
-      <!-- Taste & Off The Clock (Books & Coffee) -->
-      <section id="taste" class="section-row" aria-labelledby="taste-title">
-        <div class="section-label">
-          <h2 id="taste-title">Off the clock</h2>
-          <p class="model-caption">Curated bookshelf.<br>Specialty coffee log.</p>
-        </div>
-        <div id="taste-content" class="section-content">
-          <!-- Rendered by app.js -->
-        </div>
-      </section>
-
-      <!-- Interactive 3D Brick Playground Section -->
-      <section id="playground" class="section-row playground-section" aria-labelledby="playground-title">
-        <div class="section-label">
-          <h2 id="playground-title">Play with bricks</h2>
-          <p class="model-caption">Six tactile builds. Drag to rotate in 3D space, assemble, and play.</p>
+          <h2 id="game-title">PM Simulator</h2>
+          <p class="section-caption">An interactive scenario game for product managers to test trade-offs and decision velocity.</p>
         </div>
         <div class="section-content">
-          <div class="build-gallery-heading">
-            <span>Select a 3D build configuration:</span>
-            <span>Drag canvas to inspect 360°</span>
-          </div>
-
-          <div class="build-gallery" role="group" aria-label="Choose a build preset">
-            <button class="build-choice active" type="button" data-design="original" aria-pressed="true">
-              <span>Classic Stack</span>
-            </button>
-            <button class="build-choice" type="button" data-design="orbit" aria-pressed="false">
-              <span>Orbit Ring</span>
-            </button>
-            <button class="build-choice" type="button" data-design="heart" aria-pressed="false">
-              <span>Heart Shape</span>
-            </button>
-            <button class="build-choice" type="button" data-design="tower" aria-pressed="false">
-              <span>High Tower</span>
-            </button>
-            <button class="build-choice" type="button" data-design="staircase" aria-pressed="false">
-              <span>Staircase</span>
-            </button>
-            <button class="build-choice" type="button" data-design="arch" aria-pressed="false">
-              <span>Arch Gateway</span>
-            </button>
-          </div>
-
-          <div class="build-stage-heading">
-            <h3 id="selected-build">Classic Stack</h3>
-            <p class="playground-instructions">Click &amp; drag mouse (or touch) to rotate. Hit scatter to explode into loose pieces.</p>
-          </div>
-
-          <div class="brick-playground">
-            <div id="scene" role="img" aria-label="Interactive 3D building bricks canvas"></div>
-            <div class="scene-caption">
-              <span class="drag-hint">⇄ Drag to rotate in 3D</span>
-              <div class="playground-controls">
-                <button id="sound-toggle" class="scene-btn" type="button" aria-pressed="true">Sound On 🔊</button>
-                <button id="stack-toggle" class="scene-btn" type="button">Scatter the bricks ↘</button>
+          <div class="pm-simulator-wrapper">
+            <div class="game-console-header">
+              <div>
+                <h3>The PM Decision Console</h3>
+                <p>Navigate tactical production crises. Monitor live team telemetry.</p>
               </div>
+              <span class="game-badge-live">LIVE SIMULATOR</span>
+            </div>
+
+            <!-- Live Telemetry Gauges -->
+            <div class="telemetry-dashboard">
+              <div class="telemetry-gauge">
+                <div class="gauge-head">
+                  <span>🚀 Velocity</span>
+                  <span id="val-velocity">70%</span>
+                </div>
+                <div class="gauge-track">
+                  <div id="gauge-velocity" class="gauge-fill fill-velocity" style="width: 70%;"></div>
+                </div>
+              </div>
+
+              <div class="telemetry-gauge">
+                <div class="gauge-head">
+                  <span>💖 User Delight</span>
+                  <span id="val-delight">65%</span>
+                </div>
+                <div class="gauge-track">
+                  <div id="gauge-delight" class="gauge-fill fill-delight" style="width: 65%;"></div>
+                </div>
+              </div>
+
+              <div class="telemetry-gauge">
+                <div class="gauge-head">
+                  <span>🛡️ Stability</span>
+                  <span id="val-health">80%</span>
+                </div>
+                <div class="gauge-track">
+                  <div id="gauge-health" class="gauge-fill fill-health" style="width: 80%;"></div>
+                </div>
+              </div>
+
+              <div class="telemetry-gauge">
+                <div class="gauge-head">
+                  <span>💰 Runway</span>
+                  <span id="val-cost">75%</span>
+                </div>
+                <div class="gauge-track">
+                  <div id="gauge-cost" class="gauge-fill fill-cost" style="width: 75%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scenario Stage -->
+            <div id="game-stage-container">
+              <!-- Rendered by app.js -->
             </div>
           </div>
         </div>
       </section>
 
-      <!-- On The Internet / Social Posts -->
-      <section id="elsewhere" class="section-row" aria-labelledby="elsewhere-title">
+      <!-- Feature Prioritization Matrix (2x2 Quadrant) -->
+      <section id="matrix" class="section-row" aria-labelledby="matrix-title">
         <div class="section-label">
-          <h2 id="elsewhere-title">On the internet</h2>
-          <p class="model-caption">Public thoughts, viral observations &amp; PM hot takes.</p>
+          <h2 id="matrix-title">Prioritization</h2>
+          <p class="section-caption">Interactive 2x2 Impact vs. Effort quadrant for roadmap trade-offs.</p>
         </div>
-        <div id="social-posts-content" class="section-content">
+        <div class="section-content">
+          <p class="section-caption" style="margin-bottom: 0.8rem;">Click any item to inspect the PM rationale behind its quadrant classification:</p>
+          <div id="matrix-container">
+            <!-- Rendered by app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- PM Mental Models Revision Flashcards -->
+      <section id="mental-models" class="section-row" aria-labelledby="models-title">
+        <div class="section-label">
+          <h2 id="models-title">Mental Models</h2>
+          <p class="section-caption">Core frameworks every product manager should revise and internalize.</p>
+        </div>
+        <div id="mental-models-content" class="section-content">
+          <!-- Rendered by app.js -->
+        </div>
+      </section>
+
+      <!-- Active Projects -->
+      <section id="projects" class="section-row" aria-labelledby="projects-title">
+        <div class="section-label">
+          <h2 id="projects-title">Projects</h2>
+          <p class="section-caption">Open source tools, agentic data layers &amp; system architecture notes.</p>
+        </div>
+        <div id="projects-content" class="section-content">
           <!-- Rendered by app.js -->
         </div>
       </section>
@@ -240,8 +184,19 @@
   </main>
 
   <!-- Site Footer -->
-  <footer id="site-footer" class="site-footer">
-    <!-- Rendered by app.js -->
+  <footer class="site-footer wrap">
+    <div class="footer-inner">
+      <div>
+        <h3 class="footer-name">Aman</h3>
+        <p class="footer-caption">Product Manager — Data &amp; AI Platform | 0-to-1 Systems</p>
+        <p class="footer-caption" style="margin-top: 0.3rem;">Data &amp; AI @ HCLTech • MIT Solve Fellow</p>
+      </div>
+      <div class="footer-links">
+        <a href="#top">Back to top ↑</a>
+        <a href="https://github.com/Aman-system-design" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="llms.txt" target="_blank" title="AI reading file">llms.txt</a>
+      </div>
+    </div>
   </footer>
 
   <!-- Scripts -->

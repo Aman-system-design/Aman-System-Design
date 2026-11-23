@@ -1,234 +1,218 @@
-// PM Portfolio Configuration File
-// Pre-configured for Aman (Data & AI @ HCLTech • 0-to-1 Products • MIT Solve)
-// You can edit any field here or use the on-site "Customize" button!
+// Aman's PM Portfolio & Interactive PM System Sandbox
+// Original concept: Systems & Product Primitives + The PM Decision Game
 
 window.PORTFOLIO_DATA = {
   profile: {
     name: "Aman",
     shortName: "Aman",
     initials: "as",
-    role: "Product Manager — Data & AI Platform | 0-to-1 Products",
-    tagline: "Hi, I’m <span>Aman.</span>",
-    bio: "Product Manager building data & AI platforms and 0-to-1 software systems. Focused on closing the gap between complex machine intelligence and intuitive, high-impact enterprise user workflows.",
+    role: "Product Manager — Data & AI Platform | 0-to-1 Systems",
+    tagline: "Building <span>data &amp; AI systems</span> that scale for humans.",
+    bio: "I’m a technical Product Manager leading enterprise AI platforms at HCLTech, scaling 0-to-1 software systems, and researching human-machine decision loops. MIT Solve Fellow.",
     email: "aman@example.com",
     location: "India",
     statusBadge: "Data & AI @ HCLTech • MIT Solve Fellow",
     socials: {
       linkedin: "https://www.linkedin.com/",
       twitter: "https://x.com/",
-      substack: "https://substack.com/",
       github: "https://github.com/Aman-system-design"
     }
   },
 
-  colorKey: [
-    { id: "building", color: "blue", label: "Blue for building", section: "work" },
-    { id: "learning", color: "yellow", label: "Yellow for learning", section: "education" },
-    { id: "sharing", color: "red", label: "Red for sharing", section: "field-notes" }
+  primitives: [
+    { id: "systems", color: "blue", label: "Systems Architecture", icon: "⬡" },
+    { id: "zerotoone", color: "amber", label: "0-to-1 Products", icon: "△" },
+    { id: "telemetry", color: "green", label: "Field Telemetry", icon: "◇" },
+    { id: "models", color: "purple", label: "PM Mental Models", icon: "○" }
   ],
 
   work: {
     current: {
       company: "HCLTech",
       url: "https://www.hcltech.com/",
-      badge: "Current",
+      badge: "Current Role",
       role: "Product Manager — Data & AI Solutions",
       period: "2023 – Present",
-      location: "India",
-      summary: "Leading 0-to-1 data platform and generative AI capability rollouts for enterprise operations. Championing product strategy, cross-functional engineering execution, and customer telemetry.",
+      summary: "Leading 0-to-1 data platform and enterprise AI capability rollouts. Architecting developer workflows, telemetry dashboards, and foundational model integrations for tier-1 enterprise accounts.",
       metrics: [
-        { label: "Platform Scale", value: "Enterprise", detail: "tier-1 global deployments" },
-        { label: "Efficiency Gain", value: "3.5×", detail: "in automated data pipeline workflows" },
-        { label: "AI Adoption", value: "85%+", detail: "user conversion on generative assistant" }
+        { label: "Pipeline Efficiency", value: "3.5×", detail: "reduction in automated pipeline cycles" },
+        { label: "Active Copilot Conversion", value: "85%+", detail: "workflow adoption across target teams" },
+        { label: "Data Scale", value: "Enterprise", detail: "multi-tenant security & telemetry" }
       ],
       highlights: [
-        "Architected product roadmap for next-gen data platforms and AI-driven decision copilot tooling.",
-        "Partnered with data engineering and ML research teams to reduce latency on pipeline orchestration by 40%.",
-        "Established product discovery loops with enterprise stakeholders, turning qualitative friction into high-velocity sprint features."
+        "Spearheaded enterprise AI copilot strategy, turning ambiguous workflow friction into verified prompt-engineered agent toolchains.",
+        "Partnered with data engineering and ML teams to reduce inference latency by 40% using tiered caching and model quantization.",
+        "Created an internal 'Explainability & Safety Gate' pattern that cut false user hallucinations by 55%."
       ]
     },
     previous: [
       {
-        company: "0-to-1 Product Ventures & MIT Solve",
-        role: "Product Lead & Innovation Fellow",
+        company: "MIT Solve Initiative",
+        role: "Innovation Fellow & 0-to-1 Product Lead",
         period: "2022 – 2023",
-        description: "Built and scaled early-stage tech solutions addressing systemic operational challenges.",
-        bulletPoints: [
-          "Recognized through MIT Solve initiative for human-centric product design and measurable social impact.",
-          "Led prototyping, user interviews, and GTM positioning from zero to first 10,000 active users."
+        summary: "Selected for global challenge cohort to design and validate scalable technology products for high-impact social challenges.",
+        bullets: [
+          "Ran end-to-end customer discovery across 60+ user interviews to define MVP scope and user journey maps.",
+          "Delivered zero-to-one product prototype adopted by early pilot partners, proving core retention loop."
         ]
       },
       {
-        company: "Enterprise Software & Analytics",
-        role: "Associate Product Manager / Systems Analyst",
+        company: "Enterprise Analytics Systems",
+        role: "Associate Product Manager / Systems Engineer",
         period: "2021 – 2022",
-        description: "Led analytics dashboard redesign and core telemetry pipelines.",
-        bulletPoints: [
-          "Spearheaded user research across 50+ enterprise users, discovering critical funnel drop-offs.",
-          "Cut report generation latency by 35% through query caching and simplified information hierarchy."
+        summary: "Led analytics dashboard rebuild and self-serve querying interface for operational teams.",
+        bullets: [
+          "Redesigned information hierarchy, eliminating 4 manual reporting steps and cutting ticket churn by 30%.",
+          "Engineered reusable telemetry metrics adopted across 8 internal engineering teams."
         ]
       }
     ]
   },
 
-  education: [
+  caseStudies: [
     {
-      institution: "MIT Solve Initiative",
-      degree: "Innovation & Global Challenge Fellow",
-      period: "2022 – 2023",
-      notes: "Technology for impact, scalable product frameworks, and human-centered design."
+      id: "ai-enterprise",
+      category: "Field Telemetry",
+      tag: "Enterprise AI Case Study",
+      title: "Closing the Last Mile: Why Enterprise AI Copilots Fail Without Human-in-the-Loop Undo States",
+      metricHighlight: "+65% User Adoption",
+      problem: "Enterprise teams loved the promise of LLM assistants, but abandonment spiked after 2 weeks due to lack of explainability, fear of automated write errors, and zero instant undo mechanisms.",
+      solution: "Designed a 2-stage 'Confidence Release Gate' with inline citations, preview diffs before state mutations, and a 1-click snapshot restore. Replaced black-box execution with transparent confidence tags.",
+      impact: "Trust score rose from 42% to 88%, and weekly active user retention jumped by 65% across 4 business units."
     },
     {
-      institution: "Bachelor of Technology / Engineering",
-      degree: "Computer Science & Engineering",
-      period: "2018 – 2022",
-      notes: "Distributed systems, database architecture, algorithm optimization."
+      id: "pipeline-chaos",
+      category: "Systems Architecture",
+      tag: "Reliability & Platform Engineering",
+      title: "Resilience by Design: Chaos Engineering for Distributed ETL Pipelines",
+      metricHighlight: "-70% Unplanned Downtime",
+      problem: "Silent data degradation in upstream API endpoints was poisoning downstream executive dashboards without triggering infrastructure alerts.",
+      solution: "Instituted automated data-contract validation at the ingestion perimeter, graceful fallback synthetic data flags, and circuit breakers that halted pipeline propagation when anomaly scores breached 3-sigma.",
+      impact: "Reduced customer-reported data bugs to zero and saved an estimated 12 engineering hours per sprint."
     }
   ],
 
   projects: [
     {
       title: "Agentic Data Orchestrator",
-      tag: "Active Project",
-      badgeColor: "blue",
+      status: "Active Project",
       url: "https://github.com/Aman-system-design",
-      description: "An autonomous agent layer that translates natural language business queries into verified SQL pipelines, lineage maps, and anomaly alerts.",
-      tags: ["AI Agents", "Data Lineage", "LLMs", "DevTools"],
-      cta: "View on GitHub ↗"
+      desc: "An autonomous agent layer translating plain business queries into verified SQL pipelines, lineage maps, and anomaly alerts.",
+      stack: ["AI Agents", "Data Lineage", "LLMs", "DevTools"]
     },
     {
-      title: "0-to-1 PM Toolkit",
-      tag: "Open Source",
-      badgeColor: "green",
+      title: "0-to-1 PM Scaffolds",
+      status: "Open Source",
       url: "https://github.com/Aman-system-design",
-      description: "Curated decision models, PRD scaffolds, and product metric telemetry templates designed specifically for technical PMs building in AI and distributed systems.",
-      tags: ["Product Strategy", "System Design", "PRD Templates"],
-      cta: "Explore Repository ↗"
+      desc: "Battle-tested PRD templates, decision logs, and metrics frameworks designed specifically for technical PMs building in AI and distributed systems.",
+      stack: ["Product Strategy", "PRD Templates", "Decision Trees"]
     },
     {
-      title: "System Design Explorer",
-      tag: "Knowledge Base",
-      badgeColor: "purple",
+      title: "System Design Teardowns",
+      status: "Knowledge Base",
       url: "https://github.com/Aman-system-design",
-      description: "Visual architectural teardowns of modern high-scale apps: caching topologies, event sourcing, consensus algorithms, and rate limiting patterns.",
-      tags: ["Architecture", "Scalability", "Tech Notes"],
-      cta: "Browse Teardowns ↗"
+      desc: "Visual architectural breakdowns of how modern high-scale apps manage caching, event streams, idempotency, and partition tolerance.",
+      stack: ["System Design", "Scalability", "Architecture"]
     }
   ],
 
-  fieldNotes: [
-    {
-      id: "ai-enterprise",
-      badge: "Field Study",
-      date: "Nov 2026",
-      title: "Why 80% of Enterprise AI copilots fail at the last mile: The feedback loop problem.",
-      summary: "I spent three weeks observing how operations managers actually use internal LLM assistants. The biggest barrier wasn’t model accuracy—it was explainability and lack of undo states. We introduced inline verification pills, which boosted team adoption by 65%.",
-      press: ["Product Tear Down", "Enterprise AI Patterns"],
-      link: "#",
-      linkText: "Read the case study ↗"
-    },
-    {
-      id: "system-resilience",
-      badge: "Operational Experiment",
-      date: "Jul 2025",
-      title: "Simulating cascade failures in distributed data pipelines before our users notice.",
-      summary: "Conducted chaos engineering simulations across our ETL pipelines to quantify how degradation propagates through customer dashboards. Defined SLA grace zones and graceful fallback degradation.",
-      press: ["Reliability Engineering", "Platform Strategy"],
-      link: "#",
-      linkText: "Explore the breakdown ↗"
-    }
-  ],
-
-  essays: [
-    {
-      title: "Product Managers don't need to write code, but must understand architecture",
-      category: "Product Philosophy",
-      date: "2026",
-      readTime: "5 min read",
-      description: "Why technical intuition and system thinking are the ultimate superpowers for modern AI platform product leaders.",
-      url: "https://github.com/Aman-system-design"
-    },
-    {
-      title: "The ergonomics of modern data tooling",
-      category: "UX & Systems",
-      date: "2025",
-      readTime: "6 min read",
-      description: "How friction in developer and data analyst interfaces compounds into engineering burnout and bad business decisions.",
-      url: "https://github.com/Aman-system-design"
-    },
-    {
-      title: "0 to 1 vs 1 to 100: Relearning product instincts",
-      category: "Strategy",
-      date: "2025",
-      readTime: "4 min read",
-      description: "The mental model shifts required when transitioning from rapid scrappy prototypes to hardened enterprise platforms.",
-      url: "https://github.com/Aman-system-design"
-    }
-  ],
-
-  books: [
-    {
-      title: "Designing Data-Intensive Applications",
-      author: "Martin Kleppmann",
-      category: "Systems",
-      takeaway: "The definitive guide for understanding replication, partitioning, and the true cost of distributed consistency.",
-      rating: "★★★★★"
-    },
-    {
-      title: "Building Microservices",
-      author: "Sam Newman",
-      category: "Architecture",
-      takeaway: "Decomposition patterns, service boundaries, and organizational alignment with Conway's Law.",
-      rating: "★★★★★"
-    },
-    {
-      title: "The Mom Test",
-      author: "Rob Fitzpatrick",
-      category: "Product Discovery",
-      takeaway: "How to talk to customers and learn if your business is a good idea when everyone is lying to you.",
-      rating: "★★★★★"
-    },
-    {
-      title: "High Output Management",
-      author: "Andy Grove",
-      category: "Leadership",
-      takeaway: "Leverage, managerial output, and treating organizational processes as high-yield production lines.",
-      rating: "★★★★★"
-    }
-  ],
-
-  coffeeNotes: {
-    title: "Off the Clock: Coffee & Fuel",
-    subtitle: "Notes on specialty beans, pour-overs & sprint fuel",
-    favorites: [
-      { spot: "Single Origin Aeropress", city: "Home Barista", note: "Medium roast Ethiopian Yirgacheffe, floral and citrus notes" },
-      { spot: "Blue Tokai Roasters", city: "Bengaluru / Delhi", note: "Vienna roast cold brew, smooth dark chocolate undertone" },
-      { spot: "Araku Micro-lot", city: "Araku Valley", note: "Natural process pour-over, balanced acidity with stone fruit finish" },
-      { spot: "Espresso Tonic", city: "Summer Sprints", note: "Double shot espresso over chilled tonic with citrus peel" }
+  // Interactive PM Simulator Game Data
+  game: {
+    scenarios: [
+      {
+        id: 1,
+        title: "Sprint Dilemma: The AI Model Latency Crisis",
+        situation: "Your engineering lead just deployed a state-of-the-art reasoning model to production. Model accuracy jumped by 18%, but p99 latency ballooned from 400ms to 4.2 seconds! Executive customers are complaining that the app feels sluggish.",
+        choices: [
+          {
+            text: "Roll back completely to the old fast model and postpone the launch.",
+            telemetry: { velocity: -15, delight: -10, health: +20, cost: 0 },
+            feedback: "Safe, but disappointed leadership and lost accuracy gains. Product momentum stalled."
+          },
+          {
+            text: "Implement tiered speculative caching + async streaming with an instant UI skeleton loader.",
+            telemetry: { velocity: +15, delight: +25, health: +15, cost: -10 },
+            feedback: "Masterclass PM move! Perceived latency dropped to 120ms with full model accuracy preserved."
+          },
+          {
+            text: "Double server compute instances to brute-force faster throughput.",
+            telemetry: { velocity: +5, delight: +5, health: -10, cost: -35 },
+            feedback: "Cloud bill tripled in 24 hours without fixing core architectural bottle-neck. Finance is furious!"
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: "Roadmap Collision: The Whale Customer Custom Request",
+        situation: "A massive potential enterprise client promises an annual contract of $400K, BUT demands a custom proprietary auth connector and bespoke UI modifications that would derail your core Q3 platform roadmap for 6 weeks.",
+        choices: [
+          {
+            text: "Agree unconditionally and reassign the entire sprint team to build the custom feature.",
+            telemetry: { velocity: -25, delight: -20, health: -15, cost: +30 },
+            feedback: "You sold out the roadmap and created technical debt. Core users churned from neglected features."
+          },
+          {
+            text: "Say strict NO and tell them to wait until next year's roadmap review.",
+            telemetry: { velocity: +10, delight: -15, health: +10, cost: -20 },
+            feedback: "Roadmap was protected, but you lost a flagship logo and revenue milestone."
+          },
+          {
+            text: "Architect a generic Extensible Webhook/Plugin SDK that satisfies their need while benefiting all customers.",
+            telemetry: { velocity: +20, delight: +30, health: +25, cost: +20 },
+            feedback: "Iconic platform strategy! Turned a one-off custom request into a durable platform competitive moat."
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: "0-to-1 Funnel Leak: The Onboarding Drop-Off",
+        situation: "Your new self-serve developer API platform has 5,000 weekly landing page visits, but only 4% complete onboarding to make their first API call. Heatmaps show users drop off at the credit-card authentication screen.",
+        choices: [
+          {
+            text: "Remove credit-card requirement for a free tier (with rate limits) and offer an in-browser 1-click sandbox.",
+            telemetry: { velocity: +25, delight: +35, health: +15, cost: -5 },
+            feedback: "Activation shot from 4% to 38%! Developer friction disappeared and organic word-of-mouth exploded."
+          },
+          {
+            text: "Add an aggressive 7-step popup walkthrough explaining why credit cards are required.",
+            telemetry: { velocity: -10, delight: -30, health: -5, cost: 0 },
+            feedback: "Users hated the modal clutter and drop-off actually worsened to 2.8%."
+          },
+          {
+            text: "Run more paid ads to bring higher-intent traffic to the existing funnel.",
+            telemetry: { velocity: 0, delight: -10, health: -10, cost: -30 },
+            feedback: "Pouring water into a leaky bucket! Customer Acquisition Cost (CAC) skyrocketed."
+          }
+        ]
+      }
     ]
   },
 
-  socialPosts: [
+  // PM Mental Models Revision Flashcards
+  mentalModels: [
     {
-      platform: "LinkedIn",
-      eyebrow: "Product Insight",
-      quote: "The best product managers aren’t the ones with the most features on the roadmap. They’re the ones who ruthlessly protect engineering focus and eliminate ambiguity.",
-      url: "https://github.com/Aman-system-design",
-      date: "Recent"
+      title: "Gall’s Law",
+      category: "Systems Thinking",
+      concept: "A complex system that works is invariably found to have evolved from a simple system that worked.",
+      pmApplication: "Never start with complex microservices or omni-channel feature suites. Build the simplest atomic feedback loop first, verify demand, then layer modular complexity."
     },
     {
-      platform: "X (Twitter)",
-      eyebrow: "AI & Platform Strategy",
-      quote: "AI wrappers compete on prompt engineering. AI platform products compete on data integration, permission sandboxes, and enterprise workflow muscle memory.",
-      url: "https://github.com/Aman-system-design",
-      date: "Recent"
+      title: "The Second-Order Effect",
+      category: "Decision Making",
+      concept: "First-order thinking considers immediate results; second-order thinking considers the consequences of those consequences.",
+      pmApplication: "Adding a quick discount code raises conversions today (1st order), but trains users never to pay full price and devalues the brand tomorrow (2nd order)."
     },
     {
-      platform: "X (Twitter)",
-      eyebrow: "System Design",
-      quote: "Before you add a distributed cache or an event queue to solve a performance bottleneck, check if you’re just querying unindexed tables in a tight loop.",
-      url: "https://github.com/Aman-system-design",
-      date: "Recent"
+      title: "Conway’s Law",
+      category: "Organizational Design",
+      concept: "Organizations design systems that mirror their own communication structures.",
+      pmApplication: "If your backend and frontend teams don't communicate, your product UI will feel disjointed and uncoupled. Organize squads around customer outcomes, not technical layers."
+    },
+    {
+      title: "Good PM vs Bad PM (Horowitz)",
+      category: "Execution Craft",
+      concept: "A good PM takes full ownership of outcomes and views themselves as the CEO of the product; a bad PM makes excuses about engineering bandwidth and market conditions.",
+      pmApplication: "A good PM defines the 'Why' and the 'What', measures the business impact, and ruthlessly protects the team from organizational noise."
     }
   ]
 };
