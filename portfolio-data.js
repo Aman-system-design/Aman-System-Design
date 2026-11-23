@@ -1,17 +1,18 @@
 // Aman (AT) — aman.atii.in
-// Clean, decluttered, 100% value add (System Primitives concept)
+// Architecture: Neural Transformers, API Pipelines & 0-to-1 Systems
 
 window.PORTFOLIO_DATA = {
   profile: {
     name: "Aman",
     shortName: "Aman",
     initials: "AT",
-    role: "Data & AI Platforms • 0-to-1 Systems Architecture",
+    role: "0-to-1 Platforms • LLM & Distributed Systems Architecture",
     tagline: "Hi, I’m <span>Aman.</span>",
-    bio: "Building data & AI platforms and 0-to-1 software systems. Focused on closing the gap between complex machine intelligence and intuitive, high-impact enterprise user workflows.",
+    bio: "Architecting data & AI platforms and 0-to-1 systems. Focused on closing the gap between complex machine intelligence, low-latency inference pipelines, and intuitive human decision loops.",
     email: "iat.connectme@outlook.in",
     location: "Bengaluru, India",
-    statusBadge: "Data & AI @ HCLTech • MIT Solve Fellow",
+    statusBadge: "Active @ HCLTech • MIT Solve Fellow",
+    apiStatus: "POST /v1/status -> 200 OK (latency: 38ms)",
     socials: {
       linkedin: "https://www.linkedin.com/",
       twitter: "https://x.com/",
@@ -21,9 +22,9 @@ window.PORTFOLIO_DATA = {
   },
 
   colorKey: [
-    { id: "building", color: "blue", label: "Blue for building", section: "work" },
-    { id: "learning", color: "yellow", label: "Yellow for learning", section: "education" },
-    { id: "sharing", color: "green", label: "Green for sharing", section: "field-notes" }
+    { id: "inference", color: "blue", endpoint: "GET /inference", label: "Inference & Systems", section: "work" },
+    { id: "weights", color: "yellow", endpoint: "GET /weights", label: "Foundations & Research", section: "education" },
+    { id: "telemetry", color: "green", endpoint: "POST /telemetry", label: "Field Notes & Telemetry", section: "field-notes" }
   ],
 
   work: {
@@ -34,16 +35,16 @@ window.PORTFOLIO_DATA = {
       role: "Data & AI Solutions Lead",
       period: "2023 – Present",
       location: "Bengaluru, India",
-      summary: "Leading 0-to-1 data platform and enterprise generative AI capability rollouts. Championing systems architecture, cross-functional engineering execution, and customer telemetry.",
+      summary: "Leading 0-to-1 platform infrastructure and enterprise LLM workflow rollouts. Championing system architecture, cross-functional engineering execution, and live telemetry feedback loops.",
       metrics: [
-        { label: "Efficiency Gain", value: "3.5×", detail: "in automated data workflows" },
-        { label: "AI Adoption", value: "85%+", detail: "user conversion on generative assistant" },
-        { label: "Platform Scale", value: "Tier-1", detail: "enterprise SLA & telemetry" }
+        { label: "Workflow Efficiency", value: "3.5×", detail: "in automated data pipelines" },
+        { label: "AI Conversion", value: "85%+", detail: "user adoption on generative copilot" },
+        { label: "Platform SLA", value: "Tier-1", detail: "99.95% enterprise uptime" }
       ],
       highlights: [
         "Architected enterprise AI platform strategy, turning workflow friction into high-adoption toolchains.",
-        "Partnered with data engineering to reduce p99 inference latency by 40% via tiered speculative caching.",
-        "Established explainability & safety rollback gates that reduced automated write failures by 55%."
+        "Partnered with data engineering to cut p99 inference latency by 40% via tiered speculative caching and quantization.",
+        "Engineered explainability & safety rollback gates that reduced automated write failures by 55%."
       ]
     },
     previous: [
@@ -75,13 +76,13 @@ window.PORTFOLIO_DATA = {
       institution: "MIT Solve Initiative",
       degree: "Innovation & Global Challenge Fellow",
       period: "2022 – 2023",
-      notes: "Technology for impact, scalable product frameworks, and human-centered systems design."
+      notes: "Human-centered systems design, global challenge scaling models, and low-resource data architecture."
     },
     {
       institution: "Bachelor of Technology / Engineering",
       degree: "Computer Science & Engineering",
       period: "2018 – 2022",
-      notes: "Distributed systems, database architecture, algorithm optimization."
+      notes: "Distributed systems, database architecture, neural networks & algorithm optimization."
     }
   ],
 
@@ -169,7 +170,7 @@ window.PORTFOLIO_DATA = {
     {
       title: "Designing Data-Intensive Applications",
       author: "Martin Kleppmann",
-      category: "Systems",
+      category: "Distributed Systems",
       takeaway: "The definitive guide for understanding replication, partitioning, and the true cost of distributed consistency.",
       rating: "★★★★★"
     },
@@ -190,8 +191,8 @@ window.PORTFOLIO_DATA = {
     {
       title: "High Output Management",
       author: "Andy Grove",
-      category: "Leadership",
-      takeaway: "Leverage, managerial output, and treating organizational processes as high-yield production lines.",
+      category: "Leverage & Systems",
+      takeaway: "Treating organizational and algorithmic processes as high-yield, low-variance production lines.",
       rating: "★★★★★"
     }
   ],

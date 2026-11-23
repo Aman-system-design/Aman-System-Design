@@ -3,961 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fafbf9">
-  <title>Aman | Data &amp; AI Platforms, 0-to-1 Systems &amp; Architecture</title>
-  <meta name="description" content="Aman leads Data & AI platforms at HCLTech, building 0-to-1 systems and writing architecture field notes. MIT Solve Fellow.">
+  <meta name="theme-color" content="#faf8f5">
+  <title>Aman | 0-to-1 Platforms &amp; LLM Systems Architecture</title>
+  <meta name="description" content="Aman architects Data & AI platforms and 0-to-1 systems at HCLTech. MIT Solve Fellow. Telemetry, low-latency inference, and human-in-the-loop agency.">
   <link rel="canonical" href="https://aman.atii.in/">
 
   <!-- Favicon with AT and green dot -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23171816'/><text x='44' y='68' font-family='sans-serif' font-size='48' font-weight='900' fill='%23FFFFFF'>AT</text><circle cx='80' cy='65' r='7' fill='%2310B981'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231F242E'/><text x='44' y='68' font-family='sans-serif' font-size='48' font-weight='900' fill='%23FFFFFF'>AT</text><circle cx='80' cy='65' r='7' fill='%2310B981'/></svg>">
 
   <!-- AI Discovery Guide -->
   <link rel="help" type="text/plain" href="llms.txt" title="AI reading guide">
   <link rel="help" type="text/markdown" href="AGENTS.md" title="Agent instructions">
 
-  <!-- Core Embedded CSS to guarantee instant paint and prevent unstyled loads -->
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
-
-    :root {
-      --bg-page: #fafbf9;
-      --bg-card: #ffffff;
-      --border-subtle: #e5e8e2;
-      --border-hover: #cbd5e1;
-      --text-main: #171816;
-      --text-muted: #575b53;
-      --text-subtle: #8a8e84;
-
-      --node-blue: #2563eb;
-      --node-blue-tint: #eff6ff;
-      --node-blue-border: #bfdbfe;
-
-      --node-yellow: #f59e0b;
-      --node-yellow-tint: #fffbeb;
-      --node-yellow-border: #fde68a;
-
-      --node-green: #10b981;
-      --node-green-tint: #ecfdf5;
-      --node-green-border: #a7f3d0;
-
-      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
-      --shadow-md: 0 4px 14px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.02);
-      --shadow-lg: 0 12px 30px rgba(0,0,0,0.08);
-
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-      background-color: var(--bg-page);
-      color: var(--text-main);
-      font-family: var(--font-sans);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      background-color: var(--bg-page);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    .wrap {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    button {
-      font-family: inherit;
-      cursor: pointer;
-      border: none;
-      background: none;
-    }
-
-    /* Top Sticky Header */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(250, 251, 249, 0.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 0.9rem 0;
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-    }
-
-    .wordmark {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    .wordmark span {
-      color: var(--node-green) !important;
-    }
-
-    .site-nav {
-      display: flex;
-      align-items: center;
-      gap: 1.15rem;
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    .site-nav a {
-      padding: 0.35rem 0.6rem;
-      border-radius: var(--radius-sm);
-      transition: all 0.2s ease;
-    }
-
-    .site-nav a:hover,
-    .site-nav a.active {
-      color: var(--text-main);
-      background: #f1f3ed;
-    }
-
-    .header-socials {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-    }
-
-    .social-pill, .social-brick {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 800;
-      border: 1px solid var(--border-subtle);
-      background: #fff;
-      color: var(--text-muted);
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.15s ease, border-color 0.15s ease;
-    }
-
-    .social-pill:hover, .social-brick:hover {
-      transform: translateY(-2px);
-      border-color: var(--border-hover);
-      color: var(--text-main);
-    }
-
-    .linkedin-pill:hover, .linkedin-brick:hover { background: #0077b5; color: #fff; border-color: #0077b5; }
-    .x-pill:hover, .x-brick:hover { background: #000; color: #fff; border-color: #000; }
-    .github-pill:hover, .github-brick:hover { background: #24292e; color: #fff; border-color: #24292e; }
-
-    /* Hero Section */
-    .hero {
-      padding: 4.5rem 0 2.5rem;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      align-items: center;
-      gap: 3rem;
-    }
-
-    .intro-heading h1 {
-      font-size: 3.4rem;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      margin-bottom: 0.6rem;
-    }
-
-    .intro-heading h1 span {
-      color: var(--node-blue);
-    }
-
-    .intro-role {
-      font-size: 1.18rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 0.9rem;
-    }
-
-    .intro-bio {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      max-width: 530px;
-      margin-bottom: 1.3rem;
-    }
-
-    .intro-status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.85rem;
-      background: var(--node-green-tint);
-      border: 1px solid var(--node-green-border);
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #065f46;
-      margin-bottom: 1.6rem;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--node-green);
-      border-radius: 50%;
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
-      animation: pulseDot 2s infinite ease-in-out;
-    }
-
-    @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(0.9); }
-    }
-
-    .intro-actions {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.4rem;
-      background: var(--text-main);
-      color: #ffffff;
-      border-radius: 999px;
-      font-size: 0.92rem;
-      font-weight: 700;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(23, 24, 22, 0.15);
-    }
-
-    .contact-link:hover {
-      background: #333;
-      transform: translateY(-2px);
-    }
-
-    .playground-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.75rem 1.3rem;
-      background: #ffffff;
-      color: var(--text-main);
-      border: 1px solid var(--border-subtle);
-      border-radius: 999px;
-      font-size: 0.92rem;
-      font-weight: 700;
-      transition: all 0.2s ease;
-    }
-
-    .playground-link:hover {
-      border-color: var(--border-hover);
-      background: #f7f9f5;
-      transform: translateY(-2px);
-    }
-
-    /* Hero Avatar Card */
-    .hero-art-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2.2rem 1.5rem;
-      background: linear-gradient(145deg, #ffffff, #f4f6f1);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-avatar-svg {
-      width: 190px;
-      height: 190px;
-      filter: drop-shadow(0 10px 16px rgba(0,0,0,0.08));
-      animation: floatAvatar 4s ease-in-out infinite;
-    }
-
-    @keyframes floatAvatar {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-7px); }
-    }
-
-    .hero-art-caption {
-      font-size: 0.85rem;
-      color: var(--text-subtle);
-      margin-top: 1rem;
-      font-weight: 500;
-    }
-
-    /* Interactive Color Key Bar */
-    .brick-key-bar {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      padding: 0.85rem 1.4rem;
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      margin: 1.5rem 0 3.5rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .key-label {
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-subtle);
-      margin-right: 0.4rem;
-    }
-
-    .key-filter-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      background: #f8faf6;
-      border: 1px solid var(--border-subtle);
-      transition: all 0.2s ease;
-    }
-
-    .key-filter-btn:hover {
-      background: #edf1e8;
-      color: var(--text-main);
-    }
-
-    .key-filter-btn.active {
-      background: var(--text-main);
-      color: #fff;
-      border-color: var(--text-main);
-    }
-
-    .key-node, .key-brick {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 3px;
-      position: relative;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-      vertical-align: middle;
-    }
-
-    .key-blue { background: var(--node-blue); }
-    .key-yellow { background: var(--node-yellow); }
-    .key-green { background: var(--node-green); }
-
-    .key-filter-reset {
-      margin-left: auto;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #ef4444;
-      padding: 0.35rem 0.7rem;
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      border-radius: 999px;
-    }
-
-    /* 2-Column Section Layout */
-    .section-row {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: 2.5rem;
-      padding: 3rem 0;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .section-label {
-      position: sticky;
-      top: 5rem;
-      align-self: start;
-    }
-
-    .section-label h2 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--text-main);
-      margin-bottom: 0.5rem;
-    }
-
-    .model-caption {
-      font-size: 0.88rem;
-      color: var(--text-subtle);
-      line-height: 1.5;
-    }
-
-    .section-content {
-      min-width: 0;
-    }
-
-    /* Cards */
-    .card-stem, .card-brick {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1.8rem;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease, filter 0.3s ease;
-      position: relative;
-    }
-
-    .card-stem:hover, .card-brick:hover {
-      box-shadow: var(--shadow-md);
-      border-color: var(--border-hover);
-    }
-
-    .card-stem.dimmed, .card-brick.dimmed {
-      opacity: 0.25;
-      filter: grayscale(0.8);
-      pointer-events: none;
-    }
-
-    .card-stem.highlighted, .card-brick.highlighted {
-      border-width: 2px;
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-2px);
-    }
-
-    .card-stem.block-blue.highlighted, .card-brick.block-blue.highlighted { border-color: var(--node-blue); }
-    .card-stem.block-yellow.highlighted, .card-brick.block-yellow.highlighted { border-color: var(--node-yellow); }
-    .card-stem.block-green.highlighted, .card-brick.block-green.highlighted { border-color: var(--node-green); }
-
-    /* Work Card Details */
-    .current-role {
-      margin-bottom: 2rem;
-      background: #ffffff;
-      border-left: 5px solid var(--node-blue);
-    }
-
-    .item-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .company-brand h3 {
-      font-size: 1.22rem;
-      font-weight: 800;
-    }
-
-    .company-brand h3 a {
-      color: var(--text-main);
-    }
-
-    .company-brand h3 a:hover {
-      color: var(--node-blue);
-    }
-
-    .role-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    .current-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      background: #ecfdf5;
-      color: #065f46;
-      border: 1px solid #a7f3d0;
-    }
-
-    .role-summary {
-      font-size: 0.96rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 1.2rem;
-    }
-
-    .metrics-banner {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      padding: 1rem;
-      background: #f8faf6;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-subtle);
-      margin-bottom: 1.4rem;
-    }
-
-    .metric-value {
-      display: block;
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--node-blue);
-      line-height: 1.1;
-      font-family: var(--font-mono);
-    }
-
-    .metric-label {
-      display: block;
-      font-size: 0.76rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--text-subtle);
-      margin-top: 0.2rem;
-    }
-
-    .metric-detail {
-      display: block;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.1rem;
-    }
-
-    .highlights-title {
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-subtle);
-      margin-bottom: 0.6rem;
-    }
-
-    .role-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .role-bullets li {
-      position: relative;
-      padding-left: 1.2rem;
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    .role-bullets li::before {
-      content: "▹";
-      position: absolute;
-      left: 0;
-      color: var(--node-blue);
-      font-weight: bold;
-    }
-
-    .previous-roles {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-
-    .timeline-item {
-      padding: 1.3rem;
-    }
-
-    .timeline-item h4 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .timeline-role {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 0.2rem;
-    }
-
-    .timeline-period {
-      font-size: 0.78rem;
-      font-family: var(--font-mono);
-      color: var(--text-subtle);
-      margin-bottom: 0.6rem;
-    }
-
-    .timeline-desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* Grids */
-    .edu-grid, .projects-grid, .taste-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-
-    .field-notes-list, .essays-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .field-note-card {
-      padding: 1.6rem;
-    }
-
-    .note-badge {
-      display: inline-block;
-      font-size: 0.74rem;
-      font-weight: 700;
-      padding: 0.2rem 0.6rem;
-      background: var(--node-green-tint);
-      border: 1px solid var(--node-green-border);
-      color: #065f46;
-      border-radius: 999px;
-      margin-bottom: 0.6rem;
-    }
-
-    .note-date {
-      font-size: 0.78rem;
-      font-family: var(--font-mono);
-      color: var(--text-subtle);
-      margin-left: 0.6rem;
-    }
-
-    .field-note-card h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.6rem;
-      line-height: 1.4;
-    }
-
-    .field-note-card p {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .note-link, .project-cta {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--node-blue);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .note-link:hover, .project-cta:hover {
-      text-decoration: underline;
-    }
-
-    .essay-card {
-      padding: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .essay-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .essay-category {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--node-blue);
-    }
-
-    .essay-meta {
-      font-size: 0.78rem;
-      font-family: var(--font-mono);
-      color: var(--text-subtle);
-    }
-
-    .essay-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
-
-    .essay-card p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    .tags-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.8rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .project-tag {
-      font-size: 0.74rem;
-      padding: 0.2rem 0.5rem;
-      background: #f1f3ed;
-      border-radius: 6px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    /* 3D Playground Section */
-    .playground-section {
-      background: #ffffff;
-      padding: 3rem 2rem;
-      border-radius: var(--radius-lg);
-      margin: 2rem 0;
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .build-gallery-heading {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.82rem;
-      color: var(--text-subtle);
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-    }
-
-    .build-gallery {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 0.6rem;
-      margin-bottom: 1.4rem;
-    }
-
-    .build-choice {
-      padding: 0.6rem 0.4rem;
-      background: #f8faf6;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-align: center;
-      transition: all 0.2s ease;
-    }
-
-    .build-choice:hover {
-      background: #edf1e8;
-      color: var(--text-main);
-    }
-
-    .build-choice.active {
-      background: var(--text-main);
-      color: #fff;
-      border-color: var(--text-main);
-    }
-
-    .build-stage-heading {
-      margin-bottom: 1rem;
-    }
-
-    .build-stage-heading h3 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-bottom: 0.2rem;
-    }
-
-    .playground-instructions {
-      font-size: 0.86rem;
-      color: var(--text-subtle);
-    }
-
-    .brick-playground {
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      background: radial-gradient(circle at center, #ffffff 0%, #f4f6f1 100%);
-      position: relative;
-    }
-
-    #scene {
-      width: 100%;
-      height: 380px;
-      cursor: grab;
-    }
-
-    #scene:active {
-      cursor: grabbing;
-    }
-
-    .scene-caption {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.8rem 1.2rem;
-      background: #ffffff;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .drag-hint {
-      font-size: 0.8rem;
-      font-family: var(--font-mono);
-      color: var(--text-subtle);
-    }
-
-    .playground-controls {
-      display: flex;
-      gap: 0.6rem;
-    }
-
-    .scene-btn {
-      padding: 0.4rem 0.85rem;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      background: #f1f3ed;
-      color: var(--text-main);
-      border: 1px solid var(--border-subtle);
-      transition: all 0.2s ease;
-    }
-
-    .scene-btn:hover {
-      background: #e2e8dc;
-    }
-
-    /* Social Posts */
-    .posts-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-
-    .post-card {
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .post-platform {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--node-blue);
-      margin-bottom: 0.6rem;
-    }
-
-    .post-quote {
-      font-size: 0.94rem;
-      color: var(--text-main);
-      line-height: 1.55;
-      margin-bottom: 1rem;
-      font-style: italic;
-    }
-
-    /* Footer */
-    .site-footer {
-      border-top: 1px solid var(--border-subtle);
-      padding: 3.5rem 0 4.5rem;
-      background: #ffffff;
-      margin-top: 4rem;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 2rem;
-    }
-
-    .footer-wordmark {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    .footer-wordmark span {
-      color: var(--node-green) !important;
-    }
-
-    .footer-tagline {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      margin: 0.4rem 0 0.2rem;
-      font-weight: 600;
-    }
-
-    .footer-copy {
-      font-size: 0.82rem;
-      color: var(--text-subtle);
-    }
-
-    .footer-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    .footer-link {
-      color: var(--text-muted);
-    }
-
-    .footer-link:hover {
-      color: var(--node-blue);
-    }
-
-    /* Responsive */
-    @media (max-width: 860px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .section-row { grid-template-columns: 1fr; gap: 1.5rem; }
-      .section-label { position: static; }
-      .previous-roles, .edu-grid, .projects-grid, .taste-grid, .posts-grid { grid-template-columns: 1fr; }
-      .build-gallery { grid-template-columns: repeat(3, 1fr); }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-      .footer-right { align-items: flex-start; }
-      .intro-heading h1 { font-size: 2.6rem; }
-      .site-nav { display: none; }
-    }
-  </style>
-
-  <!-- External Stylesheet (Cascades with fallback) -->
+  <!-- Google Fonts: Fraunces + Manrope + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- External Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Three.js for Interactive 3D Primitives Playground -->
+  <!-- Three.js for Interactive 3D Neural Playground -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body id="top">
@@ -987,18 +53,18 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
+    <!-- Hero Section (Ergonomic Viewport Fit) -->
     <section class="hero wrap" aria-labelledby="intro-title">
       <div class="hero-grid">
         <div id="hero-intro" class="intro-col">
           <div class="intro-heading">
             <h1 id="intro-title">Hi, I’m <span>Aman.</span></h1>
-            <p class="intro-role">Data &amp; AI Platforms • 0-to-1 Systems Architecture</p>
-            <p class="intro-bio">Building data &amp; AI platforms and 0-to-1 software systems. Focused on closing the gap between complex machine intelligence and intuitive, high-impact enterprise user workflows.</p>
+            <p class="intro-role">0-to-1 Platforms • LLM &amp; Distributed Systems Architecture</p>
+            <p class="intro-bio">Architecting data &amp; AI platforms and 0-to-1 systems. Focused on closing the gap between complex machine intelligence, low-latency inference pipelines, and intuitive human decision loops.</p>
           </div>
           <div class="intro-status-pill">
             <span class="status-dot"></span>
-            <span>Data &amp; AI @ HCLTech • MIT Solve Fellow</span>
+            <span>Active @ HCLTech • MIT Solve Fellow</span>
           </div>
           <div class="intro-actions">
             <a class="contact-link" href="mailto:iat.connectme@outlook.in" data-copy-email="iat.connectme@outlook.in">
@@ -1006,90 +72,59 @@
               Get in touch
             </a>
             <a class="playground-link" href="#playground">
-              Explore 3D primitives <span aria-hidden="true">↘</span>
+              Inspect Neural Flow <span aria-hidden="true">↘</span>
             </a>
           </div>
         </div>
 
-        <div class="hero-art-box">
-          <svg class="hero-avatar-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Aman Digital Workstation Avatar">
-            <!-- Studio Base Shadow -->
-            <ellipse cx="100" cy="180" rx="72" ry="10" fill="#000000" fill-opacity="0.06"/>
+        <!-- Hero Neural Transformer & Token Core -->
+        <div class="hero-art-box" id="hero-token-core">
+          <svg class="token-core-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Interactive Neural Token &amp; Transformer Core">
+            <!-- Ambient Concentric Orbit Rings -->
+            <ellipse cx="100" cy="100" rx="82" ry="52" stroke="#CBD5E1" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.6"/>
+            <ellipse cx="100" cy="100" rx="60" ry="38" stroke="#94A3B8" stroke-width="1" opacity="0.45"/>
 
-            <!-- Ambient Floating Geometric Primitives (No Bricks!) -->
-            <!-- Cyan Frosted Octahedron Node (Top Left) -->
-            <polygon points="36,46 45,34 54,46 45,58" fill="#38BDF8" fill-opacity="0.85"/>
-            <polygon points="36,46 45,34 45,58" fill="#0284C7" fill-opacity="0.5"/>
+            <!-- High-Dimensional Core Monogram -->
+            <rect x="74" y="74" width="52" height="52" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.06))"/>
+            <text x="100" y="106" font-family="'Fraunces', serif" font-size="22" font-weight="800" fill="#1F242E" text-anchor="middle">AT<tspan fill="#10B981">.</tspan></text>
             
-            <!-- Emerald Glowing Ring Node (Top Right) -->
-            <circle cx="164" cy="48" r="8" fill="#10B981" fill-opacity="0.9"/>
-            <circle cx="164" cy="48" r="13" stroke="#10B981" stroke-width="1.5" stroke-dasharray="2 3" fill="none" opacity="0.6"/>
-
-            <!-- Warm Amber Prism Node (Lower Left) -->
-            <rect x="28" y="96" width="12" height="12" rx="3" transform="rotate(45 34 102)" fill="#F59E0B" fill-opacity="0.85"/>
-
-            <!-- Sleek Minimalist Desk -->
-            <rect x="24" y="142" width="152" height="12" rx="6" fill="#E2E8F0"/>
-            <rect x="36" y="154" width="6" height="24" rx="3" fill="#CBD5E1"/>
-            <rect x="158" y="154" width="6" height="24" rx="3" fill="#CBD5E1"/>
-
-            <!-- Aman - Minimalist Body / Navy Crewneck -->
-            <path d="M66 142 L66 112 C66 98 78 90 100 90 C122 90 134 98 134 112 L134 142 Z" fill="#1E293B"/>
-            <path d="M88 90 C88 96 112 96 112 90" stroke="#334155" stroke-width="2.5" fill="none"/>
-
-            <!-- Neck & Head -->
-            <rect x="94" y="80" width="12" height="14" rx="3" fill="#FCD34D"/>
-            <rect x="76" y="42" width="48" height="46" rx="14" fill="#FDE68A"/>
-
-            <!-- Modern Textured Dark Hair -->
-            <path d="M72 52 C72 32 82 26 100 26 C118 26 128 32 128 52 C128 58 126 64 124 66 C120 48 114 36 100 36 C86 36 80 48 76 66 C74 64 72 58 72 52 Z" fill="#0F172A"/>
-
-            <!-- Friendly Face Features -->
-            <circle cx="88" cy="62" r="3.5" fill="#0F172A"/>
-            <circle cx="112" cy="62" r="3.5" fill="#0F172A"/>
-            <circle cx="89.5" cy="60.5" r="1.2" fill="#FFFFFF"/>
-            <circle cx="113.5" cy="60.5" r="1.2" fill="#FFFFFF"/>
-            <path d="M94 72 C97 76 103 76 106 72" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="82" cy="68" r="3" fill="#F43F5E" fill-opacity="0.3"/>
-            <circle cx="118" cy="68" r="3" fill="#F43F5E" fill-opacity="0.3"/>
-
-            <!-- Laptop Open on Desk -->
-            <rect x="78" y="120" width="44" height="26" rx="4" fill="#94A3B8"/>
-            <rect x="81" y="123" width="38" height="20" rx="2" fill="#0F172A"/>
-            <!-- Data Stream / Code lines on display -->
-            <rect x="86" y="127" width="16" height="2" rx="1" fill="#10B981"/>
-            <rect x="86" y="131" width="24" height="2" rx="1" fill="#38BDF8"/>
-            <rect x="86" y="135" width="12" height="2" rx="1" fill="#F59E0B"/>
-            <rect x="86" y="139" width="18" height="2" rx="1" fill="#A855F7"/>
-            <path d="M72 144 L128 144 L124 142 L76 142 Z" fill="#64748B"/>
-
-            <!-- Minimalist Ceramic Coffee Cup -->
-            <rect x="142" y="128" width="14" height="16" rx="3" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
-            <path d="M156 131 C159 131 160 134 160 136 C160 138 159 141 156 141" stroke="#CBD5E1" stroke-width="1.5" fill="none"/>
-            <path d="M147 123 C147 119 150 119 150 115" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+            <!-- Dynamic Real-time Token Nodes & Attention Beams -->
+            <g id="dynamic-token-nodes">
+              <!-- Animated by app.js: initHeroTokenCore() -->
+            </g>
           </svg>
-          <p class="hero-art-caption">A little digital version of me.</p>
+
+          <div class="telemetry-chip-bar">
+            <code>POST /v1/infer</code> &bull; <span class="latency-pill">38ms p99</span> &bull; <span class="status-ok">200 OK</span>
+          </div>
+          <p class="hero-art-caption">Interactive neural token stream &amp; API topology.</p>
         </div>
       </div>
     </section>
 
-    <!-- Interactive Color Key -->
+    <!-- API Endpoints Switchboard Ribbon -->
     <nav class="wrap">
-      <div id="color-key-nav" class="brick-key-bar" aria-label="Interactive Color Palette Key">
-        <p class="key-label">Interactive Key:</p>
-        <button class="key-filter-btn" data-filter="building" data-target="work" type="button">
+      <div id="color-key-nav" class="brick-key-bar" aria-label="Interactive API Endpoints Switchboard">
+        <p class="key-label">API Endpoints:</p>
+        <button class="key-filter-btn" data-filter="inference" data-target="work" type="button">
+          <span class="api-method-code method-blue">GET</span>
+          <span class="api-endpoint-path">/inference</span>
           <i class="key-node key-blue" aria-hidden="true"></i>
-          <span>Blue for building</span>
+          <span class="key-filter-title">Inference &amp; Systems</span>
         </button>
-        <button class="key-filter-btn" data-filter="learning" data-target="education" type="button">
+        <button class="key-filter-btn" data-filter="weights" data-target="education" type="button">
+          <span class="api-method-code method-yellow">GET</span>
+          <span class="api-endpoint-path">/weights</span>
           <i class="key-node key-yellow" aria-hidden="true"></i>
-          <span>Yellow for learning</span>
+          <span class="key-filter-title">Foundations &amp; Research</span>
         </button>
-        <button class="key-filter-btn" data-filter="sharing" data-target="field-notes" type="button">
+        <button class="key-filter-btn" data-filter="telemetry" data-target="field-notes" type="button">
+          <span class="api-method-code method-green">POST</span>
+          <span class="api-endpoint-path">/telemetry</span>
           <i class="key-node key-green" aria-hidden="true"></i>
-          <span>Green for sharing</span>
+          <span class="key-filter-title">Field Notes &amp; Telemetry</span>
         </button>
-        <button class="key-filter-reset" id="reset-filter-btn" type="button" style="display:none;">Clear filter ✕</button>
+        <button class="key-filter-reset" id="reset-filter-btn" type="button" style="display:none;">Reset Filter ✕</button>
       </div>
     </nav>
 
@@ -1100,10 +135,77 @@
       <section id="work" class="section-row" aria-labelledby="work-title">
         <div class="section-label">
           <h2 id="work-title">Work</h2>
-          <p class="model-caption">Building Data &amp; AI platforms, 0-to-1 systems &amp; telemetry.</p>
+          <p class="model-caption">Building Data &amp; AI platforms, low-latency inference &amp; 0-to-1 systems.</p>
         </div>
         <div id="work-content" class="section-content">
-          <!-- Rendered by app.js -->
+          <!-- Lead Card (HCLTech) -->
+          <article class="current-role card-stem block-blue">
+            <div class="item-top">
+              <div class="company-brand">
+                <h3><a href="https://www.hcltech.com/" target="_blank" rel="noopener noreferrer">HCLTech ↗</a></h3>
+                <span class="role-title">Data &amp; AI Solutions Lead</span>
+              </div>
+              <span class="current-badge"><span class="status-dot-sm"></span> Current</span>
+            </div>
+
+            <p class="role-summary">Leading 0-to-1 platform infrastructure and enterprise LLM workflow rollouts. Championing system architecture, cross-functional engineering execution, and live telemetry feedback loops.</p>
+
+            <div class="metrics-banner">
+              <div class="metric-block">
+                <span class="metric-value">3.5×</span>
+                <span class="metric-label">Workflow Efficiency</span>
+                <span class="metric-detail">in automated data pipelines</span>
+              </div>
+              <div class="metric-block">
+                <span class="metric-value">85%+</span>
+                <span class="metric-label">AI Conversion</span>
+                <span class="metric-detail">user adoption on generative copilot</span>
+              </div>
+              <div class="metric-block">
+                <span class="metric-value">Tier-1</span>
+                <span class="metric-label">Platform SLA</span>
+                <span class="metric-detail">99.95% enterprise uptime</span>
+              </div>
+            </div>
+
+            <div class="role-highlights">
+              <h4 class="highlights-title">Key Architectural Highlights:</h4>
+              <ul class="role-bullets">
+                <li>Architected enterprise AI platform strategy, turning workflow friction into high-adoption toolchains.</li>
+                <li>Partnered with data engineering to cut p99 inference latency by 40% via tiered speculative caching and quantization.</li>
+                <li>Engineered explainability &amp; safety rollback gates that reduced automated write failures by 55%.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- 2-Column Previous Career Arc -->
+          <div class="previous-roles">
+            <article class="timeline-item card-stem block-blue">
+              <div class="item-top">
+                <h4>MIT Solve Initiative</h4>
+                <span class="timeline-period">2022 – 2023</span>
+              </div>
+              <p class="timeline-role">Innovation Fellow &amp; 0-to-1 Systems Lead</p>
+              <p class="timeline-desc">Selected for global challenge cohort to design and validate scalable technology products for high-impact social challenges.</p>
+              <ul class="role-bullets mini-bullets">
+                <li>Ran end-to-end customer discovery across 60+ user interviews to define MVP scope.</li>
+                <li>Delivered zero-to-one product prototype adopted by early pilot partners.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-item card-stem block-blue">
+              <div class="item-top">
+                <h4>Enterprise Analytics Systems</h4>
+                <span class="timeline-period">2021 – 2022</span>
+              </div>
+              <p class="timeline-role">Systems &amp; Platform Engineer</p>
+              <p class="timeline-desc">Led analytics dashboard rebuild and self-serve querying interface for operational teams.</p>
+              <ul class="role-bullets mini-bullets">
+                <li>Redesigned information hierarchy, eliminating 4 manual reporting steps.</li>
+                <li>Engineered reusable telemetry metrics adopted across 8 engineering teams.</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -1111,7 +213,7 @@
       <section id="education" class="section-row" aria-labelledby="education-title">
         <div class="section-label">
           <h2 id="education-title">Education</h2>
-          <p class="model-caption">Foundations in engineering, distributed systems &amp; global fellowship.</p>
+          <p class="model-caption">Foundations in computer science, distributed algorithms &amp; global fellowship.</p>
         </div>
         <div id="education-content" class="section-content">
           <!-- Rendered by app.js -->
@@ -1122,7 +224,7 @@
       <section id="projects" class="section-row" aria-labelledby="projects-title">
         <div class="section-label">
           <h2 id="projects-title">Active Projects</h2>
-          <p class="model-caption">Building over coffee &amp; exploring agentic interfaces.</p>
+          <p class="model-caption">Autonomous agent layers, system design scaffolds &amp; architectural toolkits.</p>
         </div>
         <div id="projects-content" class="section-content">
           <!-- Rendered by app.js -->
@@ -1133,7 +235,7 @@
       <section id="field-notes" class="section-row" aria-labelledby="field-notes-title">
         <div class="section-label">
           <h2 id="field-notes-title">Field Notes</h2>
-          <p class="model-caption">Real-world operational teardowns &amp; enterprise platform studies.</p>
+          <p class="model-caption">Real-world operational teardowns, failure modes &amp; enterprise platform studies.</p>
         </div>
         <div id="field-notes-content" class="section-content">
           <!-- Rendered by app.js -->
@@ -1144,7 +246,7 @@
       <section id="writing" class="section-row" aria-labelledby="writing-title">
         <div class="section-label">
           <h2 id="writing-title">Writing</h2>
-          <p class="model-caption">Sharing patterns, behavioral loops &amp; system architecture notes.</p>
+          <p class="model-caption">Mental models, behavioral loops &amp; system architecture notes.</p>
         </div>
         <div id="essays-content" class="section-content">
           <!-- Rendered by app.js -->
@@ -1155,58 +257,58 @@
       <section id="taste" class="section-row" aria-labelledby="taste-title">
         <div class="section-label">
           <h2 id="taste-title">Off the clock</h2>
-          <p class="model-caption">Curated bookshelf.<br>Specialty coffee log.</p>
+          <p class="model-caption">Curated systems bookshelf.<br>Specialty pour-over coffee log.</p>
         </div>
         <div id="taste-content" class="section-content">
           <!-- Rendered by app.js -->
         </div>
       </section>
 
-      <!-- Interactive 3D Primitives Playground Section -->
+      <!-- Interactive 3D Neural Playground Section -->
       <section id="playground" class="section-row playground-section" aria-labelledby="playground-title">
         <div class="section-label">
-          <h2 id="playground-title">Play with Primitives</h2>
-          <p class="model-caption">Six tactile assemblies. Drag to rotate in 3D space, disperse nodes, and reassemble.</p>
+          <h2 id="playground-title">Play with Neural Flow</h2>
+          <p class="model-caption">Six live LLM &amp; transformer architectures. Drag to rotate in 3D space, inspect tensor manifolds, and disperse weights.</p>
         </div>
         <div class="section-content">
           <div class="build-gallery-heading">
-            <span>Select a 3D architecture preset:</span>
+            <span>Select a neural architecture preset:</span>
             <span>Drag canvas to inspect 360°</span>
           </div>
 
-          <div class="build-gallery" role="group" aria-label="Choose a build preset">
-            <button class="build-choice active" type="button" data-design="original" aria-pressed="true">
-              <span>Classic Stack</span>
+          <div class="build-gallery" role="group" aria-label="Choose a neural architecture preset">
+            <button class="build-choice active" type="button" data-design="attention" aria-pressed="true">
+              <span>Multi-Head Attention</span>
             </button>
-            <button class="build-choice" type="button" data-design="orbit" aria-pressed="false">
-              <span>Orbital Ring</span>
+            <button class="build-choice" type="button" data-design="manifold" aria-pressed="false">
+              <span>Latent Manifold</span>
             </button>
-            <button class="build-choice" type="button" data-design="monolith" aria-pressed="false">
-              <span>Dual Monolith</span>
+            <button class="build-choice" type="button" data-design="pipeline" aria-pressed="false">
+              <span>API Pipeline</span>
             </button>
-            <button class="build-choice" type="button" data-design="cascade" aria-pressed="false">
-              <span>Cascade Matrix</span>
+            <button class="build-choice" type="button" data-design="speculative" aria-pressed="false">
+              <span>Speculative Tree</span>
             </button>
-            <button class="build-choice" type="button" data-design="gateway" aria-pressed="false">
-              <span>Gateway Arch</span>
+            <button class="build-choice" type="button" data-design="layers" aria-pressed="false">
+              <span>Transformer Layers</span>
             </button>
-            <button class="build-choice" type="button" data-design="equilibrium" aria-pressed="false">
-              <span>Equilibrium</span>
+            <button class="build-choice" type="button" data-design="sparsity" aria-pressed="false">
+              <span>Tensor Sparsity</span>
             </button>
           </div>
 
           <div class="build-stage-heading">
-            <h3 id="selected-build">Classic Stack</h3>
-            <p class="playground-instructions">Click &amp; drag mouse (or touch) to rotate 360°. Hit disperse to scatter into floating data nodes.</p>
+            <h3 id="selected-build">Multi-Head Attention</h3>
+            <p class="playground-instructions">Click &amp; drag mouse (or touch) to rotate in 3D. Hit disperse to scatter into floating weights.</p>
           </div>
 
           <div class="brick-playground">
-            <div id="scene" role="img" aria-label="Interactive 3D primitives canvas"></div>
+            <div id="scene" role="img" aria-label="Interactive 3D neural flow and transformer canvas"></div>
             <div class="scene-caption">
-              <span class="drag-hint">⇄ Drag to rotate in 3D</span>
+              <span class="drag-hint">⇄ Drag to inspect 360°</span>
               <div class="playground-controls">
                 <button id="sound-toggle" class="scene-btn" type="button" aria-pressed="true">Sound On 🔊</button>
-                <button id="stack-toggle" class="scene-btn" type="button">Disperse primitives ↘</button>
+                <button id="stack-toggle" class="scene-btn" type="button">Disperse tokens ↘</button>
               </div>
             </div>
           </div>
@@ -1233,7 +335,7 @@
       <div class="footer-left">
         <a class="footer-wordmark" href="#top">AT<span style="color:#10b981">.</span></a>
         <p class="footer-tagline">Aman • Data &amp; AI Systems • 0-to-1 Platforms</p>
-        <p class="footer-copy">Crafted with precision. Designed for scale and human agency.</p>
+        <p class="footer-copy">Crafted with precision. Designed for scale, low latency and human agency.</p>
       </div>
       <div class="footer-right">
         <a class="footer-link" href="mailto:iat.connectme@outlook.in">iat.connectme@outlook.in</a>
