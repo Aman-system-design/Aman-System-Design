@@ -1,40 +1,39 @@
-# ⚡ Aman — Product Manager (Data & AI Platforms | 0-to-1 Systems)
+# ⚡ Aman — Data & AI Systems | 0-to-1 Platforms
 
 <div align="center">
-  <h3>Data &amp; AI @ HCLTech • Building 0-to-1 Products • MIT Solve Fellow</h3>
-  <p>A high-craft, decluttered Product Management portfolio &amp; interactive PM Decision Simulator.</p>
+  <h3>Data &amp; AI @ HCLTech • Building 0-to-1 Systems • MIT Solve Fellow</h3>
+  <p>A high-craft, single-view executive bento cockpit &amp; interactive System Trade-off Simulator.</p>
   <p>
-    <a href="https://aman-system-design.github.io/Aman-System-Design/"><strong>Explore Live Website &amp; Play Simulator »</strong></a>
+    <a href="https://aman-system-design.github.io/Aman-System-Design/"><strong>Launch Live Cockpit &amp; Simulator »</strong></a>
   </p>
 </div>
 
 ---
 
-## 🎯 About This Concept
+## 🎯 The Concept: Single-Screen Executive Bento Cockpit
 
-Designed specifically for technical and platform product managers, this portfolio replaces generic tropes with **Product Primitives** and an interactive **PM Decision Simulator Game**.
+Designed for maximum signal-to-noise ratio in a **single-eye view**:
 
-### Key Highlights:
-- 🎮 **The PM Decision Simulator Game**: A live tactical decision console with real-time team telemetry meters (*Product Velocity, User Delight, System Stability, Runway*). Play through production AI latency crises, enterprise roadmap derailments, and 0-to-1 onboarding drop-offs with instant PM post-mortem analysis.
-- 📊 **Interactive Prioritization Matrix (2x2)**: An interactive Impact vs. Effort quadrant mapping roadmap decisions (Quick Wins, Major Bets, Fill-Ins, Money Pits) with underlying PM rationale.
-- 🧠 **PM Mental Models Flashcards**: Interactive cards breaking down core principles (Gall’s Law, Second-Order Thinking, Conway’s Law, Good PM / Bad PM) with practical execution takeaways.
-- ⬡ **Product Primitives Filter**: Filter the entire portfolio on the fly across Systems Architecture, 0-to-1 Craft, Field Telemetry, and Mental Models.
-- 📐 **Enterprise Work & Case Studies**: Quantifiable impact at HCLTech (3.5× pipeline acceleration, 85%+ copilot adoption), MIT Solve Fellow journey, and technical field studies.
-- 🔊 **Tactile Web Audio Feedback**: Subtle synthesized mechanical audio clicks for all UI interactions.
+1. **Identity & Core Scale (Left Column)**:
+   - Personal introduction: Building Data & AI platform infrastructure and 0-to-1 software systems.
+   - Verified telemetry metrics: `3.5×` pipeline acceleration, `85%+` active copilot adoption, `Tier-1` enterprise scale.
+   - Active systems: *Agentic Data Orchestrator* and *System Design Teardowns*.
+
+2. **The System Trade-Off Simulator (Center Column)**:
+   - **Mode 1: Tactical Dilemma Console**: Test high-stakes engineering decisions (Inference Latency Spike, Whale Client Custom Fork, Funnel Friction) against live telemetry meters (*Velocity, User Delight, Stability, Runway*).
+   - **Mode 2: Architecture Sandbox**: Live interactive sliders for workload ingestion scale (10k → 2M req/sec) with real-time calculated p99 Latency, Cloud Bill, and SLA Reliability.
+
+3. **Production Experience & Field Case Studies (Right Column)**:
+   - HCLTech, MIT Solve Initiative, and enterprise telemetry platforms.
+   - Deep-dive case studies on *Human-in-the-Loop Undo States* (+65% retention) and *Chaos Engineering in Distributed ETL* (-70% downtime).
+
+4. **Web Audio Feedback**:
+   - Subtle tactile mechanical click sounds synthesized directly in the browser (with sound toggle).
 
 ---
 
 ## 🌐 Live URL
 👉 **[https://aman-system-design.github.io/Aman-System-Design/](https://aman-system-design.github.io/Aman-System-Design/)**
-
----
-
-## 🛠️ Architecture & Tech Stack
-
-- **Vanilla HTML5 & CSS3**: Pure, lightweight, zero build-step overhead, 60fps transitions.
-- **Web Audio API**: Synthesized tactile audio feedback with no external sound assets needed.
-- **portfolio-data.js**: Single source of truth for all career milestones, telemetry metrics, and simulator scenarios.
-- **GitHub Pages CI/CD**: Automatic deployment on push via GitHub Actions.
 
 ---
 

@@ -1,25 +1,23 @@
-// Aman's PM Portfolio & Interactive PM System Sandbox
-// Application Logic, PM Decision Game Engine, and Interactive Workflows
+// Aman — Single-View Portfolio & Interactive System Simulator
+// Strictly read-only, decluttered single-view architecture
 
 document.addEventListener("DOMContentLoaded", () => {
   const data = window.PORTFOLIO_DATA;
   if (!data) return;
 
-  renderHero(data);
-  renderPrimitives(data);
-  renderWork(data);
+  renderIntro(data);
+  renderMetrics(data);
+  renderExperience(data);
   renderCaseStudies(data);
   renderProjects(data);
-  renderPMRevisionCards(data);
-  initPMSimulatorGame(data);
-  initPrioritizationMatrix();
-  initCustomizerModal(data);
-  initCopyEmail();
+  initSimulator(data);
+  initSandbox();
   initSoundEngine();
+  initCopyEmail();
 });
 
-// Sound Synthesizer using Web Audio API
-class AudioFeedback {
+// Sound Synthesizer
+class SoundEngine {
   constructor() {
     this.ctx = null;
     this.enabled = true;
@@ -32,7 +30,7 @@ class AudioFeedback {
     }
   }
 
-  playClick() {
+  click() {
     if (!this.enabled) return;
     this.init();
     if (!this.ctx) return;
@@ -43,20 +41,20 @@ class AudioFeedback {
     const gain = this.ctx.createGain();
 
     osc.type = "sine";
-    osc.frequency.setValueAtTime(800, t);
-    osc.frequency.exponentialRampToValueAtTime(300, t + 0.04);
+    osc.frequency.setValueAtTime(650, t);
+    osc.frequency.exponentialRampToValueAtTime(250, t + 0.035);
 
-    gain.gain.setValueAtTime(0.2, t);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.04);
+    gain.gain.setValueAtTime(0.18, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.035);
 
     osc.connect(gain);
     gain.connect(this.ctx.destination);
 
     osc.start(t);
-    osc.stop(t + 0.04);
+    osc.stop(t + 0.035);
   }
 
-  playSuccess() {
+  success() {
     if (!this.enabled) return;
     this.init();
     if (!this.ctx) return;
@@ -67,637 +65,361 @@ class AudioFeedback {
     const gain = this.ctx.createGain();
 
     osc.type = "triangle";
-    osc.frequency.setValueAtTime(440, t);
-    osc.frequency.exponentialRampToValueAtTime(880, t + 0.12);
+    osc.frequency.setValueAtTime(420, t);
+    osc.frequency.exponentialRampToValueAtTime(840, t + 0.1);
 
-    gain.gain.setValueAtTime(0.25, t);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+    gain.gain.setValueAtTime(0.2, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
 
     osc.connect(gain);
     gain.connect(this.ctx.destination);
 
     osc.start(t);
-    osc.stop(t + 0.15);
+    osc.stop(t + 0.12);
   }
 }
 
-const audio = new AudioFeedback();
+const sound = new SoundEngine();
 
 function initSoundEngine() {
-  const soundToggle = document.getElementById("sound-toggle-btn");
-  if (soundToggle) {
-    soundToggle.addEventListener("click", () => {
-      audio.enabled = !audio.enabled;
-      soundToggle.textContent = audio.enabled ? "Sound: ON 🔊" : "Sound: OFF 🔇";
-      soundToggle.setAttribute("aria-pressed", audio.enabled ? "true" : "false");
-      if (audio.enabled) audio.playClick();
-    });
-  }
-}
-
-// Render Hero
-function renderHero(data) {
-  const wordmark = document.getElementById("brand-wordmark");
-  if (wordmark) {
-    wordmark.innerHTML = `${data.profile.initials}<span>.</span>`;
-  }
-
-  const heroContainer = document.getElementById("hero-content");
-  if (!heroContainer) return;
-
-  heroContainer.innerHTML = `
-    <div class="hero-header-line">
-      <div class="status-pill">
-        <span class="pulse-indicator"></span>
-        <span>${data.profile.statusBadge}</span>
-      </div>
-      <span class="location-tag">📍 ${data.profile.location}</span>
-    </div>
-
-    <h1 class="hero-tagline">${data.profile.tagline}</h1>
-    <p class="hero-role-title">${data.profile.role}</p>
-    <p class="hero-bio">${data.profile.bio}</p>
-
-    <div class="hero-cta-group">
-      <a class="btn-primary" href="#pm-game" id="hero-game-btn">
-        <span class="btn-icon">⚡</span> Play PM Simulator
-      </a>
-      <a class="btn-secondary" href="#case-studies">
-        View Case Studies ↘
-      </a>
-      <button class="btn-outline" id="copy-email-btn" data-email="${data.profile.email}">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        Copy Email
-      </button>
-      <button class="btn-text" id="open-customizer-btn">Customize Profile</button>
-    </div>
-  `;
-}
-
-// Render Product Primitives Filter Row
-function renderPrimitives(data) {
-  const container = document.getElementById("primitives-nav");
-  if (!container) return;
-
-  container.innerHTML = `
-    <div class="primitives-bar">
-      <span class="primitives-title">Product Primitives:</span>
-      ${data.primitives.map(p => `
-        <button class="primitive-btn filter-${p.color}" data-target="${p.id}" type="button">
-          <span class="primitive-icon">${p.icon}</span>
-          <span class="primitive-label">${p.label}</span>
-        </button>
-      `).join("")}
-      <button class="primitive-reset-btn" id="reset-primitives-btn" type="button" style="display:none;">Reset</button>
-    </div>
-  `;
-
-  const buttons = container.querySelectorAll(".primitive-btn");
-  const resetBtn = document.getElementById("reset-primitives-btn");
-
-  buttons.forEach(btn => {
+  const btn = document.getElementById("sound-btn");
+  if (btn) {
     btn.addEventListener("click", () => {
-      audio.playClick();
-      const isActive = btn.classList.contains("active");
-      buttons.forEach(b => b.classList.remove("active"));
-      document.querySelectorAll("[data-primitive]").forEach(el => el.classList.remove("primitive-dim", "primitive-glow"));
-
-      if (isActive) {
-        if (resetBtn) resetBtn.style.display = "none";
-        return;
-      }
-
-      btn.classList.add("active");
-      if (resetBtn) resetBtn.style.display = "inline-flex";
-
-      const target = btn.dataset.target;
-      document.querySelectorAll("[data-primitive]").forEach(el => {
-        if (el.dataset.primitive === target) {
-          el.classList.add("primitive-glow");
-        } else {
-          el.classList.add("primitive-dim");
-        }
-      });
-    });
-  });
-
-  if (resetBtn) {
-    resetBtn.addEventListener("click", () => {
-      audio.playClick();
-      buttons.forEach(b => b.classList.remove("active"));
-      document.querySelectorAll("[data-primitive]").forEach(el => el.classList.remove("primitive-dim", "primitive-glow"));
-      resetBtn.style.display = "none";
+      sound.enabled = !sound.enabled;
+      btn.textContent = sound.enabled ? "Sound: ON 🔊" : "Sound: OFF 🔇";
+      btn.setAttribute("aria-pressed", sound.enabled ? "true" : "false");
+      if (sound.enabled) sound.click();
     });
   }
 }
 
-// Render Work & Experience
-function renderWork(data) {
-  const container = document.getElementById("work-content");
+// Render Intro
+function renderIntro(data) {
+  const container = document.getElementById("intro-container");
   if (!container) return;
-  const cur = data.work.current;
 
   container.innerHTML = `
-    <!-- Current Role Feature Card -->
-    <div class="current-role-card card-shell" data-primitive="systems">
-      <div class="card-meta-line">
-        <div>
-          <span class="badge-active">● ${cur.badge}</span>
-          <h3 class="role-company"><a href="${cur.url}" target="_blank" rel="noopener noreferrer">${cur.company} ↗</a></h3>
-          <p class="role-designation">${cur.role}</p>
-        </div>
-        <span class="role-tenure">${cur.period}</span>
-      </div>
-
-      <p class="role-description">${cur.summary}</p>
-
-      <!-- Headline Metrics -->
-      <div class="telemetry-metrics-grid">
-        ${cur.metrics.map(m => `
-          <div class="telemetry-metric-item">
-            <span class="metric-number">${m.value}</span>
-            <span class="metric-caption">${m.label}</span>
-            <span class="metric-sub">${m.detail}</span>
-          </div>
-        `).join("")}
-      </div>
-
-      <div class="highlights-box">
-        <h4>Key Engineering & Product Initiatives</h4>
-        <ul>
-          ${cur.highlights.map(h => `<li>${h}</li>`).join("")}
-        </ul>
-      </div>
+    <div class="status-indicator">
+      <span class="status-dot"></span>
+      <span>${data.profile.status}</span>
     </div>
 
-    <!-- Previous Experience List -->
-    <div class="previous-roles-grid">
-      ${data.work.previous.map(p => `
-        <div class="past-role-card card-shell" data-primitive="zerotoone">
-          <div class="past-role-top">
-            <div>
-              <h4 class="past-company">${p.company}</h4>
-              <p class="past-title">${p.role}</p>
-            </div>
-            <span class="past-period">${p.period}</span>
-          </div>
-          <p class="past-summary">${p.summary}</p>
-          <ul class="past-bullets">
-            ${p.bullets.map(b => `<li>${b}</li>`).join("")}
-          </ul>
-        </div>
-      `).join("")}
+    <h1 class="intro-headline">${data.profile.headline}</h1>
+    <p class="intro-bio">${data.profile.bio}</p>
+
+    <div class="intro-actions">
+      <button class="btn-primary" id="copy-email-btn" data-email="${data.profile.email}">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy Email</span>
+      </button>
+      <a class="btn-outline" href="${data.profile.github}" target="_blank" rel="noopener noreferrer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <span>GitHub</span>
+      </a>
+      <span class="geo-tag">📍 ${data.profile.location}</span>
     </div>
   `;
+}
+
+// Render Metrics
+function renderMetrics(data) {
+  const container = document.getElementById("metrics-container");
+  if (!container) return;
+
+  container.innerHTML = data.metrics.map(m => `
+    <div class="metric-pill">
+      <span class="metric-num">${m.value}</span>
+      <div class="metric-info">
+        <strong>${m.label}</strong>
+        <small>${m.sub}</small>
+      </div>
+    </div>
+  `).join("");
+}
+
+// Render Experience
+function renderExperience(data) {
+  const container = document.getElementById("experience-container");
+  if (!container) return;
+
+  container.innerHTML = data.experience.map(e => `
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <strong class="exp-company">${e.company}</strong>
+          <span class="exp-role">${e.role}</span>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-tag tag-${e.tag.toLowerCase()}">${e.tag}</span>
+          <time class="exp-time">${e.period}</time>
+        </div>
+      </div>
+      <p class="exp-summary">${e.summary}</p>
+      <ul class="exp-bullets">
+        ${e.bullets.map(b => `<li>${b}</li>`).join("")}
+      </ul>
+    </div>
+  `).join("");
 }
 
 // Render Case Studies
 function renderCaseStudies(data) {
-  const container = document.getElementById("case-studies-content");
+  const container = document.getElementById("casestudies-container");
   if (!container) return;
 
-  container.innerHTML = `
-    <div class="case-studies-grid">
-      ${data.caseStudies.map(cs => `
-        <article class="case-study-card card-shell" data-primitive="telemetry">
-          <div class="case-tag-line">
-            <span class="case-category">${cs.category}</span>
-            <span class="case-metric-badge">${cs.metricHighlight}</span>
-          </div>
-          <h3 class="case-title">${cs.title}</h3>
-          
-          <div class="case-body-grid">
-            <div class="case-block problem-block">
-              <strong>The Friction / Problem</strong>
-              <p>${cs.problem}</p>
-            </div>
-            <div class="case-block solution-block">
-              <strong>The Architecture / Product Solution</strong>
-              <p>${cs.solution}</p>
-            </div>
-          </div>
-
-          <div class="case-impact-line">
-            <strong>Outcome:</strong> <span>${cs.impact}</span>
-          </div>
-        </article>
-      `).join("")}
+  container.innerHTML = data.caseStudies.map(cs => `
+    <div class="case-card">
+      <div class="case-header">
+        <h4>${cs.title}</h4>
+        <span class="case-metric">${cs.metric}</span>
+      </div>
+      <div class="case-diff">
+        <div class="diff-block">
+          <span class="diff-label">Friction</span>
+          <p>${cs.problem}</p>
+        </div>
+        <div class="diff-block">
+          <span class="diff-label">System Architecture</span>
+          <p>${cs.solution}</p>
+        </div>
+      </div>
     </div>
-  `;
+  `).join("");
 }
 
-// Render Active Projects
+// Render Projects
 function renderProjects(data) {
-  const container = document.getElementById("projects-content");
+  const container = document.getElementById("projects-container");
   if (!container) return;
 
-  container.innerHTML = `
-    <div class="projects-grid">
-      ${data.projects.map(p => `
-        <div class="project-card card-shell" data-primitive="zerotoone">
-          <div class="project-top-line">
-            <h3 class="project-title"><a href="${p.url}" target="_blank" rel="noopener noreferrer">${p.title} ↗</a></h3>
-            <span class="project-status-tag">${p.status}</span>
-          </div>
-          <p class="project-desc">${p.desc}</p>
-          <div class="project-stack-pills">
-            ${p.stack.map(s => `<span class="stack-pill">${s}</span>`).join("")}
-          </div>
-        </div>
-      `).join("")}
+  container.innerHTML = data.projects.map(p => `
+    <div class="project-pill">
+      <div class="proj-head">
+        <strong>${p.name}</strong>
+        <span class="proj-tag">${p.tag}</span>
+      </div>
+      <p class="proj-desc">${p.desc}</p>
     </div>
-  `;
+  `).join("");
 }
 
-// Render Mental Models Flashcards
-function renderPMRevisionCards(data) {
-  const container = document.getElementById("mental-models-content");
-  if (!container) return;
+// Interactive Tactical Dilemma Simulator
+function initSimulator(data) {
+  const scenarios = data.simulator.scenarios;
+  let currentIdx = 0;
+  let telemetry = { velocity: 70, delight: 65, health: 80, cost: 75 };
 
-  container.innerHTML = `
-    <div class="revision-header">
-      <p class="revision-sub">Click any card to inspect how this mental model applies to real product engineering decisions:</p>
-    </div>
-    <div class="mental-models-grid">
-      ${data.mentalModels.map(m => `
-        <div class="model-card card-shell" data-primitive="models">
-          <div class="model-top">
-            <span class="model-badge">${m.category}</span>
-            <span class="flip-hint">Insight ↘</span>
-          </div>
-          <h4 class="model-title">${m.title}</h4>
-          <p class="model-concept">“${m.concept}”</p>
-          <div class="model-application">
-            <strong>PM Execution Lens:</strong>
-            <p>${m.pmApplication}</p>
-          </div>
-        </div>
-      `).join("")}
-    </div>
-  `;
+  const stage = document.getElementById("sim-stage");
+  if (!stage) return;
 
-  // Click animation on model cards
-  container.querySelectorAll(".model-card").forEach(card => {
-    card.addEventListener("click", () => {
-      audio.playClick();
-      card.classList.toggle("card-expanded");
-    });
-  });
-}
-
-// PM Simulator Game Engine
-function initPMSimulatorGame(data) {
-  const gameSection = document.getElementById("pm-game");
-  if (!gameSection) return;
-
-  const scenarios = data.game.scenarios;
-  let currentRound = 0;
-  let telemetry = {
-    velocity: 70,
-    delight: 65,
-    health: 80,
-    cost: 75
-  };
-  let history = [];
-
-  const roundContainer = document.getElementById("game-stage-container");
-  if (!roundContainer) return;
-
-  function updateTelemetryGauges() {
-    // Clamp values between 5 and 100
+  function updateGauges() {
     telemetry.velocity = Math.max(5, Math.min(100, telemetry.velocity));
     telemetry.delight = Math.max(5, Math.min(100, telemetry.delight));
     telemetry.health = Math.max(5, Math.min(100, telemetry.health));
     telemetry.cost = Math.max(5, Math.min(100, telemetry.cost));
 
-    const setGauge = (id, val) => {
-      const bar = document.getElementById(`gauge-${id}`);
-      const text = document.getElementById(`val-${id}`);
+    const set = (id, val) => {
+      const bar = document.getElementById(`bar-${id}`);
+      const txt = document.getElementById(`txt-${id}`);
       if (bar) bar.style.width = `${val}%`;
-      if (text) text.textContent = `${val}%`;
+      if (txt) txt.textContent = `${val}%`;
     };
 
-    setGauge("velocity", telemetry.velocity);
-    setGauge("delight", telemetry.delight);
-    setGauge("health", telemetry.health);
-    setGauge("cost", telemetry.cost);
+    set("vel", telemetry.velocity);
+    set("del", telemetry.delight);
+    set("hlth", telemetry.health);
+    set("cst", telemetry.cost);
   }
 
-  function renderScenario(index) {
-    if (index >= scenarios.length) {
-      renderGameResults();
+  function renderScenario(idx) {
+    if (idx >= scenarios.length) {
+      renderResults();
       return;
     }
 
-    const sc = scenarios[index];
-    roundContainer.innerHTML = `
-      <div class="scenario-card card-shell">
-        <div class="scenario-top">
-          <span class="round-counter">Scenario ${index + 1} of ${scenarios.length}</span>
-          <span class="scenario-type">Tactical Dilemma</span>
-        </div>
-
-        <h3 class="scenario-title">${sc.title}</h3>
-        <p class="scenario-situation">${sc.situation}</p>
-
-        <div class="choices-container">
-          <p class="choices-label">What is your call, Product Manager?</p>
-          ${sc.choices.map((choice, i) => `
-            <button class="choice-option-btn" data-choice="${i}">
-              <span class="choice-letter">${String.fromCharCode(65 + i)}</span>
-              <span class="choice-text">${choice.text}</span>
-            </button>
-          `).join("")}
-        </div>
-
-        <div id="choice-feedback-box" class="choice-feedback-box" style="display:none;"></div>
+    const sc = scenarios[idx];
+    stage.innerHTML = `
+      <div class="sim-header-row">
+        <span class="sim-counter">Tactical Round ${idx + 1} / ${scenarios.length}</span>
+        <span class="sim-type">System Trade-off</span>
       </div>
+
+      <h4 class="sim-title">${sc.title}</h4>
+      <p class="sim-context">${sc.context}</p>
+
+      <div class="sim-options">
+        ${sc.options.map((opt, i) => `
+          <button class="sim-opt-btn" data-opt="${i}">
+            <span class="opt-key">${String.fromCharCode(65 + i)}</span>
+            <span class="opt-text">${opt.text}</span>
+          </button>
+        `).join("")}
+      </div>
+
+      <div id="sim-feedback" class="sim-feedback-box" style="display:none;"></div>
     `;
 
-    const choiceBtns = roundContainer.querySelectorAll(".choice-option-btn");
-    const feedbackBox = roundContainer.querySelector("#choice-feedback-box");
+    const btns = stage.querySelectorAll(".sim-opt-btn");
+    const fb = stage.querySelector("#sim-feedback");
 
-    choiceBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const choiceIdx = parseInt(btn.dataset.choice, 10);
-        const selected = sc.choices[choiceIdx];
+    btns.forEach(b => {
+      b.addEventListener("click", () => {
+        const optIdx = parseInt(b.dataset.opt, 10);
+        const choice = sc.options[optIdx];
 
-        // Apply telemetry
-        telemetry.velocity += selected.telemetry.velocity;
-        telemetry.delight += selected.telemetry.delight;
-        telemetry.health += selected.telemetry.health;
-        telemetry.cost += selected.telemetry.cost;
+        telemetry.velocity += choice.impact.velocity;
+        telemetry.delight += choice.impact.delight;
+        telemetry.health += choice.impact.health;
+        telemetry.cost += choice.impact.cost;
 
-        audio.playSuccess();
-        updateTelemetryGauges();
+        sound.success();
+        updateGauges();
 
-        // Lock buttons
-        choiceBtns.forEach(b => b.disabled = true);
-        btn.classList.add("selected-choice");
+        btns.forEach(btn => btn.disabled = true);
+        b.classList.add("chosen");
 
-        // Display feedback
-        feedbackBox.style.display = "block";
-        feedbackBox.innerHTML = `
-          <div class="feedback-content">
-            <strong>Post-Decision Outcome:</strong>
-            <p>${selected.feedback}</p>
-            <button id="next-scenario-btn" class="btn-primary next-btn">
-              ${index + 1 < scenarios.length ? "Next Scenario →" : "View Final PM Evaluation 🏆"}
-            </button>
+        fb.style.display = "block";
+        fb.innerHTML = `
+          <div class="verdict-line">
+            <strong>Outcome:</strong> <span>${choice.verdict}</span>
           </div>
+          <button id="next-sim-btn" class="btn-sim-next">
+            ${idx + 1 < scenarios.length ? "Next Dilemma →" : "View System Assessment 🏆"}
+          </button>
         `;
 
-        document.getElementById("next-scenario-btn").addEventListener("click", () => {
-          audio.playClick();
-          currentRound++;
-          renderScenario(currentRound);
+        document.getElementById("next-sim-btn").addEventListener("click", () => {
+          sound.click();
+          currentIdx++;
+          renderScenario(currentIdx);
         });
       });
     });
   }
 
-  function renderGameResults() {
-    const avgScore = Math.round((telemetry.velocity + telemetry.delight + telemetry.health + telemetry.cost) / 4);
-    let title = "Senior Principal Product Manager — Systems & Scale";
-    let desc = "Exceptional balance of user empathy, technical foresight, and commercial pragmatism. You protected velocity without creating fatal technical debt.";
+  function renderResults() {
+    const avg = Math.round((telemetry.velocity + telemetry.delight + telemetry.health + telemetry.cost) / 4);
+    let rank = "High-Leverage Systems Architect";
+    let desc = "Balanced user ergonomics, architectural stability, and team velocity without fatal technical debt.";
 
-    if (avgScore < 50) {
-      title = "Scrappy 0-to-1 PM";
-      desc = "You kept the lights on, but accumulated high technical debt and budget pressure. Great learning ground for enterprise scale.";
-    } else if (avgScore >= 80) {
-      title = "Executive VP of Product / Chief System Architect";
-      desc = "Rare tier: You navigated stakeholder friction, avoided black-box traps, and turned one-off custom requests into long-term platform advantages.";
+    if (avg < 50) {
+      rank = "Reactive Builder";
+      desc = "Preserved immediate requests, but accumulated high tech debt and infrastructure friction.";
+    } else if (avg >= 80) {
+      rank = "Principal Systems Strategist";
+      desc = "Rare execution level: converted friction into long-term modular platform leverage.";
     }
 
-    roundContainer.innerHTML = `
-      <div class="results-card card-shell">
-        <div class="results-header">
-          <span class="badge-complete">Evaluation Complete</span>
-          <h3>${title}</h3>
-          <p class="results-score">Overall Score: <strong>${avgScore}/100</strong></p>
-        </div>
-
-        <p class="results-summary">${desc}</p>
-
-        <div class="final-gauges-summary">
-          <div class="final-stat">🚀 Velocity: <strong>${telemetry.velocity}%</strong></div>
-          <div class="final-stat">💖 User Delight: <strong>${telemetry.delight}%</strong></div>
-          <div class="final-stat">🛡️ Stability: <strong>${telemetry.health}%</strong></div>
-          <div class="final-stat">💰 Runway: <strong>${telemetry.cost}%</strong></div>
-        </div>
-
-        <div class="results-actions">
-          <button id="restart-game-btn" class="btn-primary">
-            Play Again ↺
-          </button>
-          <a href="#case-studies" class="btn-secondary">
-            Read Aman's Real Case Studies ↘
-          </a>
-        </div>
+    stage.innerHTML = `
+      <div class="sim-complete-card">
+        <span class="complete-badge">Simulation Complete</span>
+        <h4>${rank}</h4>
+        <p class="sim-score">Composite Score: <strong>${avg}/100</strong></p>
+        <p class="sim-desc">${desc}</p>
+        <button id="restart-sim-btn" class="btn-primary" style="margin-top:0.8rem;">
+          Run Again ↺
+        </button>
       </div>
     `;
 
-    document.getElementById("restart-game-btn").addEventListener("click", () => {
-      audio.playClick();
-      currentRound = 0;
+    document.getElementById("restart-sim-btn").addEventListener("click", () => {
+      sound.click();
+      currentIdx = 0;
       telemetry = { velocity: 70, delight: 65, health: 80, cost: 75 };
-      updateTelemetryGauges();
+      updateGauges();
       renderScenario(0);
     });
   }
 
-  // Initial render
-  updateTelemetryGauges();
+  updateGauges();
   renderScenario(0);
 }
 
-// Interactive Prioritization Matrix (2x2 Quadrant)
-function initPrioritizationMatrix() {
-  const container = document.getElementById("matrix-container");
-  if (!container) return;
+// Live Architecture Trade-Off Sandbox (Mode 2)
+function initSandbox() {
+  const tabSim = document.getElementById("tab-btn-sim");
+  const tabSand = document.getElementById("tab-btn-sand");
+  const viewSim = document.getElementById("sim-stage-view");
+  const viewSand = document.getElementById("sandbox-stage-view");
 
-  const features = [
-    { name: "Streaming Token UI", quad: "quick-wins", reason: "Low effort, huge perceived latency drop." },
-    { name: "Self-Serve API Keys", quad: "quick-wins", reason: "Immediate onboarding unblocker." },
-    { name: "Distributed Multi-Region Vector DB", quad: "major-bets", reason: "High effort, fundamental enterprise scale moat." },
-    { name: "Enterprise RBAC & SSO", quad: "major-bets", reason: "High effort, unlocks tier-1 six-figure deals." },
-    { name: "Dark Mode for Dev Portal", quad: "fill-ins", reason: "Low effort delight, low business leverage." },
-    { name: "Custom Proprietary Client Auth", quad: "money-pits", reason: "High effort, derails platform modularity." }
-  ];
+  if (!tabSim || !tabSand) return;
 
-  container.innerHTML = `
-    <div class="matrix-grid-layout">
-      <div class="matrix-quadrant quad-quick-wins" data-quad="quick-wins">
-        <div class="quad-header">
-          <span class="quad-badge">🚀 Quick Wins</span>
-          <span class="quad-axis">High Impact • Low Effort</span>
-        </div>
-        <div class="quad-items" id="items-quick-wins"></div>
-      </div>
-
-      <div class="matrix-quadrant quad-major-bets" data-quad="major-bets">
-        <div class="quad-header">
-          <span class="quad-badge">🏛️ Major Bets</span>
-          <span class="quad-axis">High Impact • High Effort</span>
-        </div>
-        <div class="quad-items" id="items-major-bets"></div>
-      </div>
-
-      <div class="matrix-quadrant quad-fill-ins" data-quad="fill-ins">
-        <div class="quad-header">
-          <span class="quad-badge">⚡ Fill-Ins</span>
-          <span class="quad-axis">Low Impact • Low Effort</span>
-        </div>
-        <div class="quad-items" id="items-fill-ins"></div>
-      </div>
-
-      <div class="matrix-quadrant quad-money-pits" data-quad="money-pits">
-        <div class="quad-header">
-          <span class="quad-badge">⚠️ Money Pits</span>
-          <span class="quad-axis">Low Impact • High Effort</span>
-        </div>
-        <div class="quad-items" id="items-money-pits"></div>
-      </div>
-    </div>
-  `;
-
-  features.forEach(f => {
-    const parent = document.getElementById(`items-${f.quad}`);
-    if (parent) {
-      const el = document.createElement("div");
-      el.className = "matrix-item-chip";
-      el.innerHTML = `
-        <strong>${f.name}</strong>
-        <p>${f.reason}</p>
-      `;
-      el.addEventListener("click", () => {
-        audio.playClick();
-        el.classList.toggle("chip-active");
-      });
-      parent.appendChild(el);
-    }
+  tabSim.addEventListener("click", () => {
+    sound.click();
+    tabSim.classList.add("active");
+    tabSand.classList.remove("active");
+    viewSim.style.display = "block";
+    viewSand.style.display = "none";
   });
+
+  tabSand.addEventListener("click", () => {
+    sound.click();
+    tabSand.classList.add("active");
+    tabSim.classList.remove("active");
+    viewSim.style.display = "none";
+    viewSand.style.display = "block";
+  });
+
+  // Sandbox inputs
+  const slider = document.getElementById("scale-slider");
+  const cacheToggle = document.getElementById("toggle-cache");
+  const circuitToggle = document.getElementById("toggle-circuit");
+  const valScale = document.getElementById("val-scale-display");
+  const valLat = document.getElementById("metric-est-latency");
+  const valCost = document.getElementById("metric-est-cost");
+  const valRel = document.getElementById("metric-est-reliability");
+
+  function calcSandbox() {
+    if (!slider) return;
+    const scale = parseInt(slider.value, 10); // 10k to 10M
+    valScale.textContent = scale >= 1000 ? `${(scale / 1000).toFixed(1)}M req/sec` : `${scale}K req/sec`;
+
+    const hasCache = cacheToggle ? cacheToggle.checked : false;
+    const hasCircuit = circuitToggle ? circuitToggle.checked : false;
+
+    // Base latency & cost calculations
+    let latency = Math.round(45 + (scale * 0.08));
+    let cost = Math.round(150 + (scale * 0.35));
+    let reliability = 98.5;
+
+    if (hasCache) {
+      latency = Math.max(12, Math.round(latency * 0.28));
+      cost = Math.round(cost * 0.75);
+    }
+    if (hasCircuit) {
+      reliability = 99.98;
+      latency = Math.max(10, latency - 4);
+    } else {
+      reliability = Math.max(92, 99.5 - (scale * 0.005));
+    }
+
+    if (valLat) valLat.textContent = `${latency}ms`;
+    if (valCost) valCost.textContent = `$${cost}/mo`;
+    if (valRel) valRel.textContent = `${reliability.toFixed(2)}%`;
+  }
+
+  if (slider) slider.addEventListener("input", calcSandbox);
+  if (cacheToggle) cacheToggle.addEventListener("change", calcSandbox);
+  if (circuitToggle) circuitToggle.addEventListener("change", calcSandbox);
+  calcSandbox();
 }
 
-// Copy Email with Toast
+// Copy Email
 function initCopyEmail() {
   document.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-email]");
+    const btn = e.target.closest("#copy-email-btn");
     if (!btn) return;
     const email = btn.dataset.email;
     if (navigator.clipboard) {
       navigator.clipboard.writeText(email).then(() => {
-        audio.playClick();
-        showToast(`Copied ${email} to clipboard!`);
-      });
-    }
-  });
-
-  function showToast(text) {
-    let toast = document.getElementById("site-toast");
-    if (!toast) {
-      toast = document.createElement("div");
-      toast.id = "site-toast";
-      toast.className = "site-toast";
-      document.body.appendChild(toast);
-    }
-    toast.textContent = text;
-    toast.classList.add("toast-visible");
-    setTimeout(() => toast.classList.remove("toast-visible"), 2600);
-  }
-}
-
-// Live Profile Customizer
-function initCustomizerModal(data) {
-  document.addEventListener("click", (e) => {
-    if (e.target && e.target.id === "open-customizer-btn") {
-      audio.playClick();
-      openModal();
-    }
-  });
-
-  function openModal() {
-    let modal = document.getElementById("customizer-modal");
-    if (!modal) {
-      modal = document.createElement("div");
-      modal.id = "customizer-modal";
-      modal.className = "customizer-modal";
-      modal.innerHTML = `
-        <div class="customizer-overlay"></div>
-        <div class="customizer-drawer card-shell">
-          <div class="drawer-header">
-            <div>
-              <h3>Customize Your PM Identity</h3>
-              <p>Update live details, headline metrics, and bio.</p>
-            </div>
-            <button id="close-modal-btn" class="close-btn" type="button">✕</button>
-          </div>
-          <div class="drawer-body">
-            <form id="edit-profile-form">
-              <div class="field-group">
-                <label>Your Name</label>
-                <input type="text" id="input-name" value="${data.profile.name}">
-              </div>
-              <div class="field-group">
-                <label>Initials (Wordmark)</label>
-                <input type="text" id="input-initials" value="${data.profile.initials}">
-              </div>
-              <div class="field-group">
-                <label>Role / Specialty</label>
-                <input type="text" id="input-role" value="${data.profile.role}">
-              </div>
-              <div class="field-group">
-                <label>Company / Current Affiliation</label>
-                <input type="text" id="input-company" value="${data.work.current.company}">
-              </div>
-              <div class="field-group">
-                <label>Short Bio</label>
-                <textarea id="input-bio" rows="3">${data.profile.bio}</textarea>
-              </div>
-              <div class="field-group">
-                <label>Email</label>
-                <input type="email" id="input-email" value="${data.profile.email}">
-              </div>
-              <div class="modal-buttons">
-                <button type="submit" class="btn-primary">Apply Live</button>
-                <button type="button" id="copy-config-btn" class="btn-outline">Copy Config JSON</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      `;
-      document.body.appendChild(modal);
-
-      modal.querySelector(".customizer-overlay").addEventListener("click", () => modal.classList.remove("open"));
-      modal.querySelector("#close-modal-btn").addEventListener("click", () => modal.classList.remove("open"));
-
-      modal.querySelector("#edit-profile-form").addEventListener("submit", (ev) => {
-        ev.preventDefault();
-        data.profile.name = document.getElementById("input-name").value;
-        data.profile.initials = document.getElementById("input-initials").value;
-        data.profile.role = document.getElementById("input-role").value;
-        data.work.current.company = document.getElementById("input-company").value;
-        data.profile.bio = document.getElementById("input-bio").value;
-        data.profile.email = document.getElementById("input-email").value;
-
-        renderHero(data);
-        renderWork(data);
-        modal.classList.remove("open");
-        audio.playSuccess();
-      });
-
-      modal.querySelector("#copy-config-btn").addEventListener("click", () => {
-        const json = "window.PORTFOLIO_DATA = " + JSON.stringify(data, null, 2) + ";\n";
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(json).then(() => {
-            const btn = modal.querySelector("#copy-config-btn");
-            btn.textContent = "Copied JSON! ✓";
-            setTimeout(() => btn.textContent = "Copy Config JSON", 2000);
-          });
+        sound.click();
+        const span = btn.querySelector("span");
+        if (span) {
+          const old = span.textContent;
+          span.textContent = "Copied! ✓";
+          setTimeout(() => span.textContent = old, 2000);
         }
       });
     }
-
-    modal.classList.add("open");
-  }
+  });
 }

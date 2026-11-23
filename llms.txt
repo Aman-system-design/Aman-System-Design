@@ -1,20 +1,20 @@
-# Aman — Product Manager (Data & AI Platforms | 0-to-1 Systems)
+# Aman — Data & AI Systems | 0-to-1 Platforms
 
-> Product Manager building Data & AI platform infrastructure and 0-to-1 systems. Recognized MIT Solve Fellow, driving data engineering scale and enterprise AI workflow automation.
+> Aman builds enterprise Data & AI platforms and 0-to-1 systems at HCLTech. Recognized MIT Solve Fellow. Specializes in scalable system architecture, automated data pipelines, human-centered decision loops, and developer experience.
 
-## Core Expertise
-- AI & Data Platform Architecture
-- 0-to-1 Product Development & GTM Strategy
-- Developer Experience & API Product Management
-- System Design, Scalability & Enterprise Telemetry
-- Human-Centered AI & Explainability Loops
+## Focus Areas
+- Enterprise AI & Data Platform Architecture
+- 0-to-1 Systems Engineering & GTM Strategy
+- Developer Tooling & Pipeline Automation
+- Human-in-the-Loop Explainability & Rollback Gates
+- Chaos Engineering & System Resilience
 
-## Current Position
-- Product Manager (Data & AI Solutions) at HCLTech (2023 – Present)
+## Current Affiliation
+- Data & AI Solutions, HCLTech (2023 – Present)
 
 ## Fellowships & Honors
 - MIT Solve Initiative Fellow (2022 – 2023)
 
 ## Digital Links
 - GitHub: https://github.com/Aman-system-design
-- Portfolio & Interactive 3D Brick Sandbox: https://aman-system-design.github.io/Aman-System-Design/
+- Portfolio & System Simulator: https://aman-system-design.github.io/Aman-System-Design/

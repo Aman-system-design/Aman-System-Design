@@ -3,201 +3,197 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fbfbf9">
-  <title>Aman — Product Manager | Data &amp; AI Systems</title>
-  <meta name="description" content="Technical Product Manager leading enterprise AI platforms at HCLTech, scaling 0-to-1 systems, and researching human-machine decision loops. MIT Solve Fellow.">
+  <meta name="theme-color" content="#fafbf8">
+  <title>Aman — Data &amp; AI Systems | 0-to-1 Platforms</title>
+  <meta name="description" content="Aman builds 0-to-1 platform infrastructure and enterprise data & AI systems at HCLTech. MIT Solve Fellow.">
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23141514'/><path d='M30 70L50 28L70 70H58L50 52L42 70H30Z' fill='%232563EB'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23141513'/><path d='M30 70L50 28L70 70H58L50 52L42 70H30Z' fill='%232563EB'/></svg>">
 
-  <!-- AI Discovery Guide -->
+  <!-- Discovery -->
   <link rel="help" type="text/plain" href="llms.txt" title="AI reading guide">
   <link rel="help" type="text/markdown" href="AGENTS.md" title="Agent instructions">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body id="top">
+<body>
 
-  <!-- Sticky Header -->
-  <header class="site-header">
-    <div class="wrap header-row">
-      <a class="brand-wordmark" href="#top" id="brand-wordmark" aria-label="Aman - Back to top">as<span>.</span></a>
-      <nav class="nav-links" aria-label="Site Navigation">
-        <a href="#work">Work</a>
-        <a href="#case-studies">Case Studies</a>
-        <a href="#pm-game">PM Simulator 🎮</a>
-        <a href="#matrix">Prioritization</a>
-        <a href="#mental-models">Mental Models</a>
-        <a href="#projects">Projects</a>
-      </nav>
-      <div class="header-actions">
-        <button id="sound-toggle-btn" class="sound-btn" type="button" aria-pressed="true">Sound: ON 🔊</button>
+  <div class="app-shell">
+    <!-- Top Bar -->
+    <header class="top-nav">
+      <div class="brand-line">
+        <span class="brand-mark">as<span>.</span></span>
+        <span class="brand-desc">Data &amp; AI Systems • 0-to-1 Platforms</span>
       </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- Hero Section -->
-    <section class="hero-section wrap" aria-labelledby="hero-title">
-      <div id="hero-content">
-        <!-- Rendered by app.js -->
+      <div class="nav-actions">
+        <button id="sound-btn" class="btn-ctrl" type="button" aria-pressed="true">Sound: ON 🔊</button>
       </div>
-    </section>
+    </header>
 
-    <!-- Primitives Navigation / Filter Bar -->
-    <nav class="wrap">
-      <div id="primitives-nav">
-        <!-- Rendered by app.js -->
+    <!-- Bento One-Eye-View Grid -->
+    <main class="bento-grid">
+
+      <!-- LEFT COLUMN: Intro, Metrics & Projects -->
+      <div class="bento-col col-left">
+        <!-- Personal Intro Card -->
+        <section class="bento-card card-intro" aria-labelledby="intro-heading">
+          <div id="intro-container">
+            <!-- Rendered by app.js -->
+          </div>
+        </section>
+
+        <!-- Telemetry Metrics Card -->
+        <section class="bento-card card-metrics" aria-label="System Metrics">
+          <div class="card-section-title">Verified System Scale</div>
+          <div id="metrics-container" class="metrics-row">
+            <!-- Rendered by app.js -->
+          </div>
+        </section>
+
+        <!-- 0-to-1 Projects Card -->
+        <section class="bento-card card-projects" aria-label="0-to-1 Systems">
+          <div class="card-section-title">Active 0-to-1 Systems</div>
+          <div id="projects-container" class="projects-stack">
+            <!-- Rendered by app.js -->
+          </div>
+        </section>
       </div>
-    </nav>
 
-    <!-- Main Content Stream -->
-    <div class="wrap">
-
-      <!-- Work & Experience -->
-      <section id="work" class="section-row" aria-labelledby="work-title">
-        <div class="section-label">
-          <h2 id="work-title">Work</h2>
-          <p class="section-caption">Systems engineering, enterprise AI platform scale &amp; 0-to-1 delivery.</p>
-        </div>
-        <div id="work-content" class="section-content">
-          <!-- Rendered by app.js -->
-        </div>
-      </section>
-
-      <!-- Case Studies & Field Telemetry -->
-      <section id="case-studies" class="section-row" aria-labelledby="cases-title">
-        <div class="section-label">
-          <h2 id="cases-title">Case Studies</h2>
-          <p class="section-caption">Real-world operational teardowns, failure modes &amp; adoption breakthroughs.</p>
-        </div>
-        <div id="case-studies-content" class="section-content">
-          <!-- Rendered by app.js -->
-        </div>
-      </section>
-
-      <!-- The PM Decision Simulator Game -->
-      <section id="pm-game" class="section-row" aria-labelledby="game-title">
-        <div class="section-label">
-          <h2 id="game-title">PM Simulator</h2>
-          <p class="section-caption">An interactive scenario game for product managers to test trade-offs and decision velocity.</p>
-        </div>
-        <div class="section-content">
-          <div class="pm-simulator-wrapper">
-            <div class="game-console-header">
-              <div>
-                <h3>The PM Decision Console</h3>
-                <p>Navigate tactical production crises. Monitor live team telemetry.</p>
-              </div>
-              <span class="game-badge-live">LIVE SIMULATOR</span>
+      <!-- CENTER COLUMN: Interactive System & Decision Simulator -->
+      <div class="bento-col col-center">
+        <section class="bento-card card-simulator" aria-labelledby="sim-title">
+          <div class="sim-top-bar">
+            <div class="sim-headline">
+              <h3 id="sim-title">System Trade-Off Simulator</h3>
+              <p>Test decision trade-offs against live team &amp; infrastructure telemetry.</p>
             </div>
+            <div class="mode-switcher" role="tablist">
+              <button id="tab-btn-sim" class="tab-btn active" role="tab" type="button">Tactical Dilemma</button>
+              <button id="tab-btn-sand" class="tab-btn" role="tab" type="button">Architecture Sandbox</button>
+            </div>
+          </div>
 
+          <!-- Mode 1: Tactical Dilemma Stage -->
+          <div id="sim-stage-view">
             <!-- Live Telemetry Gauges -->
-            <div class="telemetry-dashboard">
-              <div class="telemetry-gauge">
-                <div class="gauge-head">
+            <div class="sim-telemetry">
+              <div class="gauge-block">
+                <div class="gauge-label-line">
                   <span>🚀 Velocity</span>
-                  <span id="val-velocity">70%</span>
+                  <span id="txt-vel">70%</span>
                 </div>
-                <div class="gauge-track">
-                  <div id="gauge-velocity" class="gauge-fill fill-velocity" style="width: 70%;"></div>
+                <div class="gauge-bg">
+                  <div id="bar-vel" class="gauge-bar bar-vel" style="width: 70%;"></div>
                 </div>
               </div>
 
-              <div class="telemetry-gauge">
-                <div class="gauge-head">
+              <div class="gauge-block">
+                <div class="gauge-label-line">
                   <span>💖 User Delight</span>
-                  <span id="val-delight">65%</span>
+                  <span id="txt-del">65%</span>
                 </div>
-                <div class="gauge-track">
-                  <div id="gauge-delight" class="gauge-fill fill-delight" style="width: 65%;"></div>
+                <div class="gauge-bg">
+                  <div id="bar-del" class="gauge-bar bar-del" style="width: 65%;"></div>
                 </div>
               </div>
 
-              <div class="telemetry-gauge">
-                <div class="gauge-head">
+              <div class="gauge-block">
+                <div class="gauge-label-line">
                   <span>🛡️ Stability</span>
-                  <span id="val-health">80%</span>
+                  <span id="txt-hlth">80%</span>
                 </div>
-                <div class="gauge-track">
-                  <div id="gauge-health" class="gauge-fill fill-health" style="width: 80%;"></div>
+                <div class="gauge-bg">
+                  <div id="bar-hlth" class="gauge-bar bar-hlth" style="width: 80%;"></div>
                 </div>
               </div>
 
-              <div class="telemetry-gauge">
-                <div class="gauge-head">
+              <div class="gauge-block">
+                <div class="gauge-label-line">
                   <span>💰 Runway</span>
-                  <span id="val-cost">75%</span>
+                  <span id="txt-cst">75%</span>
                 </div>
-                <div class="gauge-track">
-                  <div id="gauge-cost" class="gauge-fill fill-cost" style="width: 75%;"></div>
+                <div class="gauge-bg">
+                  <div id="bar-cst" class="gauge-bar bar-cst" style="width: 75%;"></div>
                 </div>
               </div>
             </div>
 
             <!-- Scenario Stage -->
-            <div id="game-stage-container">
+            <div id="sim-stage">
               <!-- Rendered by app.js -->
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Feature Prioritization Matrix (2x2 Quadrant) -->
-      <section id="matrix" class="section-row" aria-labelledby="matrix-title">
-        <div class="section-label">
-          <h2 id="matrix-title">Prioritization</h2>
-          <p class="section-caption">Interactive 2x2 Impact vs. Effort quadrant for roadmap trade-offs.</p>
-        </div>
-        <div class="section-content">
-          <p class="section-caption" style="margin-bottom: 0.8rem;">Click any item to inspect the PM rationale behind its quadrant classification:</p>
-          <div id="matrix-container">
+          <!-- Mode 2: Architecture Sandbox View -->
+          <div id="sandbox-stage-view" class="sandbox-card" style="display: none;">
+            <div class="sandbox-control-group">
+              <label for="scale-slider">
+                <span>Ingestion Scale</span>
+                <span id="val-scale-display" style="color:#60a5fa; font-family:var(--font-mono);">250K req/sec</span>
+              </label>
+              <input type="range" id="scale-slider" class="scale-slider" min="10" max="2000" value="250" step="10">
+            </div>
+
+            <div class="sandbox-toggles">
+              <label class="toggle-label">
+                <input type="checkbox" id="toggle-cache" checked>
+                <span>Tiered Speculative Cache</span>
+              </label>
+              <label class="toggle-label">
+                <input type="checkbox" id="toggle-circuit" checked>
+                <span>Perimeter Circuit Breaker</span>
+              </label>
+            </div>
+
+            <div class="sandbox-output-grid">
+              <div class="sand-stat">
+                <span class="sand-label">p99 Latency</span>
+                <span id="metric-est-latency" class="sand-val">22ms</span>
+              </div>
+              <div class="sand-stat">
+                <span class="sand-label">Est. Cloud Bill</span>
+                <span id="metric-est-cost" class="sand-val">$180/mo</span>
+              </div>
+              <div class="sand-stat">
+                <span class="sand-label">SLA Reliability</span>
+                <span id="metric-est-reliability" class="sand-val">99.98%</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- RIGHT COLUMN: Production Experience & Case Studies -->
+      <div class="bento-col col-right">
+        <!-- Experience Card -->
+        <section class="bento-card card-experience" aria-label="Experience">
+          <div class="card-section-title">Production Experience</div>
+          <div id="experience-container" class="exp-stack">
             <!-- Rendered by app.js -->
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- PM Mental Models Revision Flashcards -->
-      <section id="mental-models" class="section-row" aria-labelledby="models-title">
-        <div class="section-label">
-          <h2 id="models-title">Mental Models</h2>
-          <p class="section-caption">Core frameworks every product manager should revise and internalize.</p>
-        </div>
-        <div id="mental-models-content" class="section-content">
-          <!-- Rendered by app.js -->
-        </div>
-      </section>
-
-      <!-- Active Projects -->
-      <section id="projects" class="section-row" aria-labelledby="projects-title">
-        <div class="section-label">
-          <h2 id="projects-title">Projects</h2>
-          <p class="section-caption">Open source tools, agentic data layers &amp; system architecture notes.</p>
-        </div>
-        <div id="projects-content" class="section-content">
-          <!-- Rendered by app.js -->
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <!-- Site Footer -->
-  <footer class="site-footer wrap">
-    <div class="footer-inner">
-      <div>
-        <h3 class="footer-name">Aman</h3>
-        <p class="footer-caption">Product Manager — Data &amp; AI Platform | 0-to-1 Systems</p>
-        <p class="footer-caption" style="margin-top: 0.3rem;">Data &amp; AI @ HCLTech • MIT Solve Fellow</p>
+        <!-- Case Studies Card -->
+        <section class="bento-card card-casestudies" aria-label="Case Studies">
+          <div class="card-section-title">Selected Case Studies</div>
+          <div id="casestudies-container" class="case-stack">
+            <!-- Rendered by app.js -->
+          </div>
+        </section>
       </div>
-      <div class="footer-links">
-        <a href="#top">Back to top ↑</a>
+
+    </main>
+
+    <!-- Cockpit Footer -->
+    <footer class="cockpit-footer">
+      <div>Aman — Data &amp; AI Systems • HCLTech • MIT Solve</div>
+      <nav class="footer-nav">
         <a href="https://github.com/Aman-system-design" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="llms.txt" target="_blank" title="AI reading file">llms.txt</a>
-      </div>
-    </div>
-  </footer>
+        <a href="llms.txt" target="_blank">llms.txt</a>
+      </nav>
+    </footer>
+  </div>
 
   <!-- Scripts -->
   <script src="portfolio-data.js"></script>
